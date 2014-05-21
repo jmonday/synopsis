@@ -1,0 +1,3 @@
+SynopsisEventBundle:
+    resource: "@SynopsisEventBundle/Resources/config/routing.xml"
+    prefix:   /events

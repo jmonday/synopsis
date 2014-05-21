@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}SynopsisEventBundle:Event:index{% endblock %}
+
+{% block body %}
+    <p>Event Index</p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Subject</th>
+                <th>Action</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for event in events %}
+                <td>{{ event.id }}</td>
+                <td>{{ event.subject.name }}</td>
+                <td>{{ event.type.name }}</td>
+                <td>{{ event.createdAt | date('Y-m-d H:i:s') }}</td>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
