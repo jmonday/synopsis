@@ -4,7 +4,8 @@ namespace Synopsis\Bundle\EventBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
 
-use Synopsis\Bundle\AttributeBundle\Model\ValueInterface;
+use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface;
 
 /**
  * Interface EventInterface
@@ -40,21 +41,6 @@ interface EventInterface
      * @return SubjectInterface
      */
     public function getSubject ();
-
-    /**
-     * Set the event's related type.
-     *
-     * @param TypeInterface $type The type to relate.
-     * @return EventInterface
-     */
-    public function setType ( TypeInterface $type );
-
-    /**
-     * Get the event's related type.
-     *
-     * @return TypeInterface
-     */
-    public function getType ();
 
     /**
      * Set the event's creation time.

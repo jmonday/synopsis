@@ -1,21 +1,29 @@
 <?php
 
-namespace Synopsis\Bundle\EventBundle\Entity;
+namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Synopsis\Bundle\EventBundle\Model\SubjectInterface;
+use Doctrine\Common\Collections\Collection;
+
+use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
 /**
- * Class Subject
+ * Class SubjectAction
  *
- * @package Synopsis\Bundle\EventBundle\Entity
+ * @package Synopsis\Bundle\SubjectBundle\Entity
  */
-class Subject implements SubjectInterface
+class SubjectAction implements SubjectActionInterface
 {
 
     /**
      * @var integer
      */
     private $id;
+
+    /**
+     * @var AttributeInterface[]|Collection
+     */
+    private $attributes;
 
     /**
      * @var string
@@ -43,6 +51,14 @@ class Subject implements SubjectInterface
     public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAttributes ()
+    {
+        return $this->attributes;
     }
 
     /**

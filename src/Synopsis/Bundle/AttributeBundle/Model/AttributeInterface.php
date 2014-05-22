@@ -2,6 +2,8 @@
 
 namespace Synopsis\Bundle\AttributeBundle\Model;
 
+use Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
+
 /**
  * Class AttributeInterface
  *
@@ -11,11 +13,25 @@ interface AttributeInterface
 {
 
     /**
+     * Convert the attribute to a string.
+     *
+     * @return string
+     */
+    public function __toString ();
+
+    /**
      * Get the attribute's ID number.
      *
      * @return integer
      */
     public function getId ();
+
+    /**
+     * Get the attribute's related subject action.
+     *
+     * @return SubjectActionInterface
+     */
+    public function getAction ();
 
     /**
      * Set the attribute's name.

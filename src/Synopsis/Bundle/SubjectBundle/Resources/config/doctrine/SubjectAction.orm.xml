@@ -3,27 +3,34 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Synopsis\Bundle\EventBundle\Entity\Type" table="event_types">
+    <entity name="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" table="subject_actions">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
 
         <field name="name" type="string" length="255" column="name" />
-        <field name="namespace" type="string" length="255" column="namespace" />
         <field name="description" type="text" column="description" nullable="true" />
         <field name="createdAt" type="datetime" column="created_at" />
         <field name="updatedAt" type="datetime" column="updated_at" />
 
-        <!-- Type has many Attributes -->
-        <many-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Attribute" field="attributes" fetch="EXTRA_LAZY">
-            <join-table name="event_types_attributes">
+        <!-- SubjectAction has many Attributes -->
+        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Attribute" mapped-by="action" field="attributes">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
+
+        <!--
+        <many-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Attribute" field="attributes" inversed-by="actions" fetch="EXTRA_LAZY">
+            <join-table name="subject_action_attributes">
                 <join-columns>
                     <join-column name="attribute_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />
                 </join-columns>
                 <inverse-join-columns>
-                    <join-column name="event_type_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />
+                    <join-column name="action_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+        -->
     </entity>
 </doctrine-mapping>

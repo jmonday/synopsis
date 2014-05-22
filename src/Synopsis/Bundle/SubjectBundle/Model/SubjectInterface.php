@@ -1,11 +1,13 @@
 <?php
 
-namespace Synopsis\Bundle\EventBundle\Model;
+namespace Synopsis\Bundle\SubjectBundle\Model;
+
+use Synopsis\Bundle\EventBundle\Model\EventInterface;
 
 /**
  * Interface SubjectInterface
  *
- * @package Synopsis\Bundle\EventBundle\Model
+ * @package Synopsis\Bundle\SubjectBundle\Model
  */
 interface SubjectInterface
 {
@@ -46,6 +48,21 @@ interface SubjectInterface
      * @return string
      */
     public function getDescription ();
+
+    /**
+     * Set the event's related subject type.
+     *
+     * @param SubjectTypeInterface $type The subject type to relate.
+     * @return EventInterface
+     */
+    public function setType ( SubjectTypeInterface $type );
+
+    /**
+     * Get the event's related subject type.
+     *
+     * @return SubjectTypeInterface
+     */
+    public function getType ();
 
     /**
      * Set the subject's creation time.

@@ -1,19 +1,16 @@
 <?php
 
-namespace Synopsis\Bundle\EventBundle\Entity;
+namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Doctrine\Common\Collections\Collection;
-
-use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
-    Synopsis\Bundle\EventBundle\Model\EventInterface,
-    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface;
+use Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectTypeInterface;
 
 /**
- * Class Event
+ * Class Subject
  *
- * @package Synopsis\Bundle\EventBundle\Entity
+ * @package Synopsis\Bundle\SubjectBundle\Entity
  */
-class Event implements EventInterface
+class Subject implements SubjectInterface
 {
 
     /**
@@ -22,14 +19,19 @@ class Event implements EventInterface
     private $id;
 
     /**
-     * @var ValueInterface[]|Collection
+     * @var string
      */
-    private $attributeValues;
+    private $name;
 
     /**
-     * @var SubjectInterface
+     * @var string
      */
-    private $subject;
+    private $description;
+
+    /**
+     * @var SubjectTypeInterface
+     */
+    private $type;
 
     /**
      * @var \DateTime
@@ -52,17 +54,41 @@ class Event implements EventInterface
     /**
      * {@inheritdoc}
      */
-    public function getAttributeValues ()
+    public function setName ( $name )
     {
-        return $this->attributeValues;
+        $this->name = $name;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setSubject ( SubjectInterface $subject )
+    public function getName ()
     {
-        $this->subject = $subject;
+        return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDescription ( $description )
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescription ()
+    {
+        return $this->description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setType ( SubjectTypeInterface $type )
+    {
+        $this->type = $type;
 
         return $this;
     }
@@ -70,9 +96,9 @@ class Event implements EventInterface
     /**
      * {@inheritdoc}
      */
-    public function getSubject ()
+    public function getType ()
     {
-        return $this->subject;
+        return $this->type;
     }
 
     /**

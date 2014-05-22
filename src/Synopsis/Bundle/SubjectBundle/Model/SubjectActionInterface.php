@@ -1,21 +1,21 @@
 <?php
 
-namespace Synopsis\Bundle\EventBundle\Model;
+namespace Synopsis\Bundle\SubjectBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
 
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface;
 
 /**
- * Interface TypeInterface
+ * Interface SubjectActionInterface
  *
- * @package Synopsis\Bundle\EventBundle\Model
+ * @package Synopsis\Bundle\SubjectBundle\Model
  */
-interface TypeInterface
+interface SubjectActionInterface
 {
 
     /**
-     * Get the type's ID number.
+     * Get the subject action's ID number.
      *
      * @return integer
      */
@@ -27,75 +27,60 @@ interface TypeInterface
     public function getAttributes ();
 
     /**
-     * Set the type's name.
+     * Set the subject action's name.
      *
      * @param string $name The name to set.
-     * @return TypeInterface
+     * @return SubjectActionInterface
      */
     public function setName ( $name );
 
     /**
-     * Get the type's name.
+     * Get the subject action's name.
      *
      * @return string
      */
     public function getName ();
 
     /**
-     * Set the type's namespace.
-     *
-     * @param string $namespace The namespace to set.
-     * @return TypeInterface
-     */
-    public function setNamespace ( $namespace );
-
-    /**
-     * Get the type's namespace.
-     *
-     * @return string
-     */
-    public function getNamespace ();
-
-    /**
-     * Set the type's description.
+     * Set the subject action's description.
      *
      * @param string $description The description to set.
-     * @return TypeInterface
+     * @return SubjectActionInterface
      */
     public function setDescription ( $description );
 
     /**
-     * Get the type's description.
+     * Get the subject action's description.
      *
      * @return string
      */
     public function getDescription ();
 
     /**
-     * Set the type's creation time.
+     * Set the subject action's creation time.
      *
      * @param \DateTime $createdAt
-     * @return TypeInterface
+     * @return SubjectActionInterface
      */
     public function setCreatedAt ( \DateTime $createdAt );
 
     /**
-     * Get the type's creation time.
+     * Get the subject action's creation time.
      *
      * @return \DateTime
      */
     public function getCreatedAt ();
 
     /**
-     * Set the type's update time.
+     * Set the subject action's update time.
      *
      * @param \DateTime $updatedAt
-     * @return TypeInterface
+     * @return SubjectActionInterface
      */
     public function setUpdatedAt ( \DateTime $updatedAt );
 
     /**
-     * Get the type's update time.
+     * Get the subject action's update time.
      *
      * @return \DateTime
      */

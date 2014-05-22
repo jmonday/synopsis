@@ -18,5 +18,13 @@
         <field name="configuration" type="array" column="configuration" />
         <field name="createdAt" type="datetime" column="created_at" />
         <field name="updatedAt" type="datetime" column="updated_at" />
+
+        <!-- Attribute has many SubjectActions -->
+        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" field="action" inversed-by="attributes">
+            <join-column name="action_id" referenced-column-name="id" />
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

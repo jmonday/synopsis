@@ -2,8 +2,9 @@
 
 namespace Synopsis\Bundle\AttributeBundle\Entity;
 
-use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface;
-use Synopsis\Bundle\AttributeBundle\Model\Types;
+use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
+    Synopsis\Bundle\AttributeBundle\Model\Types,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
 /**
  * Class Attribute
@@ -17,6 +18,11 @@ class Attribute implements AttributeInterface
      * @var integer
      */
     private $id;
+
+    /**
+     * @var SubjectActionInterface
+     */
+    private $action;
 
     /**
      * @var string
@@ -51,9 +57,25 @@ class Attribute implements AttributeInterface
     /**
      * {@inheritdoc}
      */
+    public function __toString ()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAction ()
+    {
+        return $this->action;
     }
 
     /**

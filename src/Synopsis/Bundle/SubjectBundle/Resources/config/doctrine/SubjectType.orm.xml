@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Synopsis\Bundle\SubjectBundle\Entity\SubjectType" table="subject_types">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="name" type="string" length="255" column="name" />
+        <field name="namespace" type="string" length="255" column="namespace" />
+        <field name="description" type="text" column="description" nullable="true" />
+        <field name="createdAt" type="datetime" column="created_at" />
+        <field name="updatedAt" type="datetime" column="updated_at" />
+
+        <!-- SubjectType has many Actions -->
+        <many-to-many target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" field="actions" fetch="EXTRA_LAZY">
+            <join-table name="subject_type_actions">
+                <join-columns>
+                    <join-column name="type_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="action_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>

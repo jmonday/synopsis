@@ -1,18 +1,18 @@
 <?php
 
-namespace Synopsis\Bundle\EventBundle\Entity;
+namespace Synopsis\Bundle\SubjectBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 
-use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
-    Synopsis\Bundle\EventBundle\Model\TypeInterface;
+use Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectTypeInterface;
 
 /**
- * Class Type
+ * Class SubjectType
  *
- * @package Synopsis\Bundle\EventBundle\Entity
+ * @package Synopsis\Bundle\SubjectBundle\Entity
  */
-class Type implements TypeInterface
+class SubjectType implements SubjectTypeInterface
 {
 
     /**
@@ -21,9 +21,9 @@ class Type implements TypeInterface
     private $id;
 
     /**
-     * @var AttributeInterface[]|Collection
+     * @var SubjectActionInterface[]|Collection
      */
-    private $attributes;
+    private $actions;
 
     /**
      * @var string
@@ -61,9 +61,9 @@ class Type implements TypeInterface
     /**
      * {@inheritdoc}
      */
-    public function getAttributes ()
+    public function getActions ()
     {
-        return $this->attributes;
+        return $this->actions;
     }
 
     /**

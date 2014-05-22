@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Synopsis\Bundle\EventBundle\Entity\Subject" table="subjects">
+    <entity name="Synopsis\Bundle\SubjectBundle\Entity\Subject" table="subjects">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
@@ -12,5 +12,12 @@
         <field name="description" type="text" column="description" nullable="true" />
         <field name="createdAt" type="datetime" column="created_at" />
         <field name="updatedAt" type="datetime" column="updated_at" />
+
+        <!-- Subject's Type -->
+        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectType" field="type" fetch="EXTRA_LAZY">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

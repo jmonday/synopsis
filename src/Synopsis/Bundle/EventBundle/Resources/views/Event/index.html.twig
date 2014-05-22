@@ -10,7 +10,9 @@
             <tr>
                 <th>ID</th>
                 <th>Subject</th>
-                <th>Action</th>
+                <th>Subject Type</th>
+                <th>Actions</th>
+                <th>Event Attributes</th>
                 <th>Date</th>
             </tr>
         </thead>
@@ -19,7 +21,26 @@
             {% for event in events %}
                 <td>{{ event.id }}</td>
                 <td>{{ event.subject.name }}</td>
-                <td>{{ event.type.name }}</td>
+                <td>{{ event.subject.type.namespace }}</td>
+                <td>
+                    <ul>
+                        {% for action in event.subject.type.actions %}
+                            <li>
+                                {{ action.name }}<br />
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for value in event.attributeValues %}
+                            <li>
+                                {{ value.attribute }}:
+                                {{ value.value }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
                 <td>{{ event.createdAt | date('Y-m-d H:i:s') }}</td>
             {% endfor %}
         </tbody>
