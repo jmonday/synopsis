@@ -2,6 +2,8 @@
 
 namespace Synopsis\Bundle\EventBundle\Entity;
 
+use FOS\UserBundle\Model\UserInterface;
+
 use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
@@ -34,6 +36,11 @@ class Event implements EventInterface
      * @var SubjectInterface
      */
     private $subject;
+
+    /**
+     * @var UserInterface
+     */
+    private $user;
 
     /**
      * @var \DateTime
@@ -85,6 +92,14 @@ class Event implements EventInterface
     public function getSubject ()
     {
         return $this->subject;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser ()
+    {
+        return $this->user;
     }
 
     /**

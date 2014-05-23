@@ -25,13 +25,14 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // Third-party Bundles
-            // new FOS\UserBundle\FOSUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
 
             // Synopsis Bundles
             new Synopsis\Bundle\CoreBundle\SynopsisCoreBundle(),
             new Synopsis\Bundle\EventBundle\SynopsisEventBundle(),
             new Synopsis\Bundle\AttributeBundle\SynopsisAttributeBundle(),
             new Synopsis\Bundle\SubjectBundle\SynopsisSubjectBundle(),
+            new Synopsis\Bundle\UserBundle\SynopsisUserBundle(),
         ];
 
         if ( in_array($this->getEnvironment(), ['dev', 'test']) ) {

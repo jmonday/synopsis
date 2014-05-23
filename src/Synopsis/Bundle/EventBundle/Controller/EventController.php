@@ -21,9 +21,20 @@ class EventController extends Controller
      */
     public function indexAction ()
     {
+        /**
+         * Obviously this code CANNOT live here!
+         * This will be migrated to a final destination, perhaps an event listener (kernel.request)?
+         * Lastly, the requires a user to be authenticated but has no checks to ensure a user is authenticated!
+         */
+        $em = $this->getDoctrine()->getManager();
+
+        /* @var $filters \Doctrine\ORM\Query\FilterCollection */
+        $filters = $em->getFilters();
+        $filter = $filters->getFilter('ownable_entity');
+        $filter->setParameter('user_id', $this->get('security.context')->getToken()->getUser()->getId());
+
         return $this->render('SynopsisEventBundle:Event:index.html.twig', [
-            'events' => $this->get('synopsis.handler.event')->getCollectionOrdered(['createdAt' => 'DESC']),
-            'pagination' => $this->get('synopsis.handler.event')->getCollectionPaginated(),
+            'events' => $this->get('synopsis.manager.event')->getCollectionOrdered(['createdAt' => 'DESC']),
         ]);
     }
 

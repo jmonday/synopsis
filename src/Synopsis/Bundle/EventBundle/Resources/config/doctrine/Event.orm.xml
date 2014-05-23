@@ -18,6 +18,13 @@
             </cascade>
         </many-to-one>
 
+        <!-- Event has many AttributeValues -->
+        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Value" mapped-by="event" field="attributeValues">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
+
         <!-- Event Subject -->
         <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\Subject" field="subject">
             <cascade>
@@ -25,11 +32,11 @@
             </cascade>
         </many-to-one>
 
-        <!-- Event has many AttributeValues -->
-        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Value" mapped-by="event" field="attributeValues">
+        <!-- Event User -->
+        <many-to-one target-entity="Synopsis\Bundle\UserBundle\Entity\User" field="user">
             <cascade>
                 <cascade-all />
             </cascade>
-        </one-to-many>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

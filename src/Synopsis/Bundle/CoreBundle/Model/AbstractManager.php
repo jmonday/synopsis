@@ -1,6 +1,6 @@
 <?php
 
-namespace Synopsis\Bundle\CoreBundle\Handler;
+namespace Synopsis\Bundle\CoreBundle\Model;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -8,11 +8,11 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface,
     Symfony\Component\Form\FormFactoryInterface;
 
 /**
- * Class AbstractHandler
+ * Class AbstractManager
  *
- * @package Synopsis\Bundle\CoreBundle\Handler
+ * @package Synopsis\Bundle\CoreBundle\Manager
  */
-abstract class AbstractHandler
+abstract class AbstractManager
 {
 
     /**
@@ -52,7 +52,7 @@ abstract class AbstractHandler
     private $repository;
 
     /**
-     * Handler constructor.
+     * Manager constructor.
      *
      * @param ObjectManager $om Doctrine object manager.
      * @param FormFactoryInterface $formFactory The form factory.

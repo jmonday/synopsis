@@ -6,7 +6,7 @@
     <parameters>
         <parameter key="synopsis.entity.event.class">Synopsis\Bundle\EventBundle\Entity\Event</parameter>
         <parameter key="synopsis.repository.event.class">Synopsis\Bundle\EventBundle\Entity\EventRepository</parameter>
-        <parameter key="synopsis.handler.event.class">Synopsis\Bundle\EventBundle\Handler\EventHandler</parameter>
+        <parameter key="synopsis.manager.event.class">Synopsis\Bundle\EventBundle\Model\EventManager</parameter>
         <!--<parameter key="synopsis.subscriber.event.class">Synopsis\Bundle\EventBundle\Event\EventSubscriber</parameter>-->
     </parameters>
 
@@ -16,8 +16,8 @@
             <argument>%synopsis.entity.event.class%</argument>
         </service>
 
-        <!-- Event Handler Service -->
-        <service id="synopsis.handler.event" class="%synopsis.handler.event.class%">
+        <!-- Event Manger Service -->
+        <service id="synopsis.manager.event" class="%synopsis.manager.event.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="form.factory" />
             <argument type="service" id="event_dispatcher" />

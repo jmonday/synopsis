@@ -3,6 +3,7 @@
 namespace Synopsis\Bundle\EventBundle\Model;
 
 use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
+    Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
@@ -11,7 +12,7 @@ use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
  *
  * @package Synopsis\Bundle\EventBundle\Model
  */
-interface EventInterface
+interface EventInterface extends OwnableInterface
 {
 
     /**

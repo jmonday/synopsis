@@ -1,10 +1,11 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: vendor/fos.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -60,6 +61,11 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+
+        filters:
+            ownable_entity:
+                class:   Synopsis\Bundle\CoreBundle\Filter\OwnableEntityFilter
+                enabled: true
 
 # Swiftmailer Configuration
 swiftmailer:
