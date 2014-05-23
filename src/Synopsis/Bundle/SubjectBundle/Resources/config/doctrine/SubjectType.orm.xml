@@ -15,7 +15,7 @@
         <field name="updatedAt" type="datetime" column="updated_at" />
 
         <!-- SubjectType has many Actions -->
-        <many-to-many target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" field="actions" fetch="EXTRA_LAZY">
+        <many-to-many target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" field="actions">
             <join-table name="subject_type_actions">
                 <join-columns>
                     <join-column name="type_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />

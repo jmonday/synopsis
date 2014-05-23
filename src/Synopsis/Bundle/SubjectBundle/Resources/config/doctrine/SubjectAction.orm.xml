@@ -19,18 +19,5 @@
                 <cascade-all />
             </cascade>
         </one-to-many>
-
-        <!--
-        <many-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Attribute" field="attributes" inversed-by="actions" fetch="EXTRA_LAZY">
-            <join-table name="subject_action_attributes">
-                <join-columns>
-                    <join-column name="attribute_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="action_id" referenced-column-name="id" nullable="false" unique="false" on-delete="CASCADE" />
-                </inverse-join-columns>
-            </join-table>
-        </many-to-many>
-        -->
     </entity>
 </doctrine-mapping>

@@ -14,7 +14,7 @@
         <field name="updatedAt" type="datetime" column="updated_at" />
 
         <!-- Subject's Type -->
-        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectType" field="type" fetch="EXTRA_LAZY">
+        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectType" field="type">
             <cascade>
                 <cascade-all />
             </cascade>

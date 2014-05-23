@@ -12,14 +12,14 @@
         <field name="updatedAt" type="datetime" column="updated_at" />
 
         <!-- Event Action -->
-        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" field="action" fetch="EXTRA_LAZY">
+        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" field="action">
             <cascade>
                 <cascade-all />
             </cascade>
         </many-to-one>
 
         <!-- Event Subject -->
-        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\Subject" field="subject" fetch="EXTRA_LAZY">
+        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\Subject" field="subject">
             <cascade>
                 <cascade-all />
             </cascade>
