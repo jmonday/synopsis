@@ -22,7 +22,7 @@ class EventController extends Controller
     public function indexAction ()
     {
         return $this->render('SynopsisEventBundle:Event:index.html.twig', [
-            'events' => $this->getDoctrine()->getRepository('SynopsisEventBundle:Event')->findAll(),
+            'events' => $this->getDoctrine()->getRepository('SynopsisEventBundle:Event')->findBy([], ['createdAt' => 'DESC']),
         ]);
     }
 

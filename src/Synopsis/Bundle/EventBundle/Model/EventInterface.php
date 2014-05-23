@@ -4,8 +4,10 @@ namespace Synopsis\Bundle\EventBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
 
+use Symfony\Component\Validator\Constraints\All;
 use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
-    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface;
+    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
 /**
  * Interface EventInterface
@@ -21,6 +23,13 @@ interface EventInterface
      * @return integer
      */
     public function getId ();
+
+    /**
+     * Get the event's related subject action.
+     *
+     * @return SubjectActionInterface
+     */
+    public function getAction ();
 
     /**
      * @return ValueInterface[]|Collection

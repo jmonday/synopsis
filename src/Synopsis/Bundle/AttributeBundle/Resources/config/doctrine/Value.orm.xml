@@ -13,7 +13,7 @@
         <field name="updatedAt" type="datetime" column="updated_at" />
 
         <!-- Related Event -->
-        <many-to-one target-entity="Synopsis\Bundle\EventBundle\Entity\Event" field="event" fetch="EXTRA_LAZY">
+        <many-to-one target-entity="Synopsis\Bundle\EventBundle\Entity\Event" field="event" inversed-by="attributeValues" fetch="EXTRA_LAZY">
             <cascade>
                 <cascade-all />
             </cascade>

@@ -6,7 +6,8 @@ use Doctrine\Common\Collections\Collection;
 
 use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface,
-    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface;
+    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
 /**
  * Class Event
@@ -20,6 +21,11 @@ class Event implements EventInterface
      * @var integer
      */
     private $id;
+
+    /**
+     * @var SubjectActionInterface
+     */
+    private $action;
 
     /**
      * @var ValueInterface[]|Collection
@@ -47,6 +53,14 @@ class Event implements EventInterface
     public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAction ()
+    {
+        return $this->action;
     }
 
     /**
