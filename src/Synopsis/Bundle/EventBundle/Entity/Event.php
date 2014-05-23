@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\EventBundle\Entity;
 
-use Doctrine\Common\Collections\Collection;
-
 use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
@@ -28,7 +26,7 @@ class Event implements EventInterface
     private $action;
 
     /**
-     * @var ValueInterface[]|Collection
+     * @var ValueInterface[]|\Doctrine\Common\Collections\Collection
      */
     private $attributeValues;
 

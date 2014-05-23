@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Doctrine\Common\Collections\Collection;
-
 use Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectTypeInterface;
 
@@ -21,7 +19,7 @@ class SubjectType implements SubjectTypeInterface
     private $id;
 
     /**
-     * @var SubjectActionInterface[]|Collection
+     * @var SubjectActionInterface[]|\Doctrine\Common\Collections\Collection
      */
     private $actions;
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="synopsis.entity.event.class">Synopsis\Bundle\EventBundle\Entity\Event</parameter>
+        <parameter key="synopsis.repository.event.class">Synopsis\Bundle\EventBundle\Entity\EventRepository</parameter>
+        <parameter key="synopsis.handler.event.class">Synopsis\Bundle\EventBundle\Handler\EventHandler</parameter>
+        <!--<parameter key="synopsis.subscriber.event.class">Synopsis\Bundle\EventBundle\Event\EventSubscriber</parameter>-->
+    </parameters>
+
+    <services>
+        <!-- Lead Repository Service -->
+        <service id="synopsis.repository.event" class="%synopsis.repository.event.class%" factory-service="doctrine" factory-method="getRepository">
+            <argument>%synopsis.entity.event.class%</argument>
+        </service>
+
+        <!-- Event Handler Service -->
+        <service id="synopsis.handler.event" class="%synopsis.handler.event.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="event_dispatcher" />
+            <argument>%synopsis.entity.event.class%</argument>
+        </service>
+
+        <!-- Event Event Subscriber -->
+        <!--
+        <service id="synopsis.subscriber.event" class="%synopsis.subscriber.event.class%">
+            <tag name="kernel.event_subscriber" />
+        </service>
+        -->
+    </services>
+</container>

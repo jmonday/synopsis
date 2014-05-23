@@ -2,9 +2,6 @@
 
 namespace Synopsis\Bundle\EventBundle\Model;
 
-use Doctrine\Common\Collections\Collection;
-
-use Symfony\Component\Validator\Constraints\All;
 use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
@@ -32,7 +29,7 @@ interface EventInterface
     public function getAction ();
 
     /**
-     * @return ValueInterface[]|Collection
+     * @return ValueInterface[]|\Doctrine\Common\Collections\Collection
      */
     public function getAttributeValues ();
 

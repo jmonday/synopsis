@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Doctrine\Common\Collections\Collection;
-
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
@@ -21,7 +19,7 @@ class SubjectAction implements SubjectActionInterface
     private $id;
 
     /**
-     * @var AttributeInterface[]|Collection
+     * @var AttributeInterface[]|\Doctrine\Common\Collections\Collection
      */
     private $attributes;
 

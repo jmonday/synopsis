@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Model;
 
-use Doctrine\Common\Collections\Collection;
-
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface;
 
 /**
@@ -22,7 +20,7 @@ interface SubjectActionInterface
     public function getId ();
 
     /**
-     * @return AttributeInterface[]|Collection
+     * @return AttributeInterface[]|\Doctrine\Common\Collections\Collection
      */
     public function getAttributes ();
 

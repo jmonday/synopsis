@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Model;
 
-use Doctrine\Common\Collections\Collection;
-
 /**
  * Interface SubjectTypeInterface
  *
@@ -20,7 +18,7 @@ interface SubjectTypeInterface
     public function getId ();
 
     /**
-     * @return SubjectActionInterface[]|Collection
+     * @return SubjectActionInterface[]|\Doctrine\Common\Collections\Collection
      */
     public function getActions ();
 
