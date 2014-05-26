@@ -21,8 +21,7 @@ class OwnableEntityFilter extends SQLFilter
         $filter = '';
 
         if ( $targetEntity->reflClass->implementsInterface('Synopsis\Bundle\CoreBundle\Model\OwnableInterface') ) {
-            // $filter = $targetTableAlias . sprintf('.user_id = %s', $this->getParameter('user_id'));
-            $filter = $targetTableAlias . '.user_id = 1';
+            $filter = sprintf('%s.user_id = %s', $targetTableAlias, $this->getParameter('user_id'));
         }
 
         return $filter;

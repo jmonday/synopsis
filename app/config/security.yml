@@ -11,10 +11,6 @@ security:
             id: fos_user.user_provider.username_email
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         main:
             pattern:   ^/
             logout:    true
@@ -27,4 +23,4 @@ security:
         - { path: ^/login$,    role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register,  role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/,          role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/events,    role: IS_AUTHENTICATED_FULLY }
