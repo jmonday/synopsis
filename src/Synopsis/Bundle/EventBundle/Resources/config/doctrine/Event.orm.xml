@@ -26,7 +26,7 @@
         </one-to-many>
 
         <!-- Event Subject -->
-        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\Subject" field="subject">
+        <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\Subject" field="subject" inversed-by="events">
             <cascade>
                 <cascade-all />
             </cascade>

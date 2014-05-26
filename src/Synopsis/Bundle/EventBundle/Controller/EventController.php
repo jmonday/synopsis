@@ -4,7 +4,7 @@ namespace Synopsis\Bundle\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Synopsis\Bundle\EventBundle\Model\EventInterface;
+use Synopsis\Bundle\EventBundle\Entity\Event;
 
 /**
  * Class EventController
@@ -29,10 +29,10 @@ class EventController extends Controller
     /**
      * Event details
      *
-     * @param EventInterface $event
+     * @param Event $event
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction ( EventInterface $event )
+    public function showAction ( Event $event )
     {
         return $this->render('SynopsisEventBundle:Event:show.html.twig', [
             'event' => $event,

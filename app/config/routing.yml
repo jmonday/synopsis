@@ -6,6 +6,10 @@ SynopsisEventBundle:
     resource: "@SynopsisEventBundle/Resources/config/routing.xml"
     prefix:   /events
 
+SynopsisSubjectBundle:
+    resource: "@SynopsisSubjectBundle/Resources/config/routing.xml"
+    prefix:   /subjects
+
 # FOS User Bundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

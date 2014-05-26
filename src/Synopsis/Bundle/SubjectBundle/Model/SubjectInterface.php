@@ -2,14 +2,17 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Model;
 
-use Synopsis\Bundle\EventBundle\Model\EventInterface;
+use Doctrine\Common\Collections\Collection;
+
+use Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
+    Synopsis\Bundle\EventBundle\Model\EventInterface;
 
 /**
  * Interface SubjectInterface
  *
  * @package Synopsis\Bundle\SubjectBundle\Model
  */
-interface SubjectInterface
+interface SubjectInterface extends OwnableInterface
 {
 
     /**
@@ -18,6 +21,13 @@ interface SubjectInterface
      * @return integer
      */
     public function getId ();
+
+    /**
+     * Get a collection of the subject's related events.
+     *
+     * @return EventInterface[]|Collection
+     */
+    public function getEvents ();
 
     /**
      * Set the subject's name.

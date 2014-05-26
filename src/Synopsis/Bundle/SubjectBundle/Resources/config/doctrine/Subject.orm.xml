@@ -13,8 +13,22 @@
         <field name="createdAt" type="datetime" column="created_at" />
         <field name="updatedAt" type="datetime" column="updated_at" />
 
-        <!-- Subject's Type -->
+        <!-- Subject Events -->
+        <one-to-many target-entity="Synopsis\Bundle\EventBundle\Entity\Event" mapped-by="subject" field="events">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
+
+        <!-- Subject Type -->
         <many-to-one target-entity="Synopsis\Bundle\SubjectBundle\Entity\SubjectType" field="type">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </many-to-one>
+
+        <!-- Subject User -->
+        <many-to-one target-entity="Synopsis\Bundle\UserBundle\Entity\User" field="user">
             <cascade>
                 <cascade-all />
             </cascade>

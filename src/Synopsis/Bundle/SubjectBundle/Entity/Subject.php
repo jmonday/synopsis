@@ -2,7 +2,12 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
+use Doctrine\Common\Collections\Collection;
+
+use FOS\UserBundle\Model\UserInterface;
+
+use Synopsis\Bundle\EventBundle\Model\EventInterface,
+    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectTypeInterface;
 
 /**
@@ -17,6 +22,11 @@ class Subject implements SubjectInterface
      * @var integer
      */
     private $id;
+
+    /**
+     * @var EventInterface[]|Collection
+     */
+    private $events;
 
     /**
      * @var string
@@ -34,6 +44,11 @@ class Subject implements SubjectInterface
     private $type;
 
     /**
+     * @var UserInterface
+     */
+    private $user;
+
+    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -49,6 +64,14 @@ class Subject implements SubjectInterface
     public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEvents ()
+    {
+        return $this->events;
     }
 
     /**
@@ -99,6 +122,14 @@ class Subject implements SubjectInterface
     public function getType ()
     {
         return $this->type;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser ()
+    {
+        return $this->user;
     }
 
     /**

@@ -3,6 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <!-- Subject Routes -->
-    <import resource="@SynopsisSubjectBundle/Resources/config/routing/subject.xml" />
+    <route id="subject_show" pattern="/{id}" methods="GET">
+        <default key="_controller">SynopsisSubjectBundle:Subject:show</default>
+    </route>
 </routes>
