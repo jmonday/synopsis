@@ -2,6 +2,8 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
+use Rhumsaa\Uuid\Uuid;
+
 use Doctrine\Common\Collections\Collection;
 
 use FOS\UserBundle\Model\UserInterface;
@@ -49,6 +51,11 @@ class Subject implements SubjectInterface
     private $user;
 
     /**
+     * @var string
+     */
+    private $uuid;
+
+    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -57,6 +64,14 @@ class Subject implements SubjectInterface
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString ()
+    {
+        return sprintf('%s@%s', __CLASS__, $this->getUuid());
+    }
 
     /**
      * {@inheritdoc}
@@ -130,6 +145,22 @@ class Subject implements SubjectInterface
     public function getUser ()
     {
         return $this->user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUuid ()
+    {
+        $this->uuid = Uuid::uuid5(Uuid::NIL, $this->getId());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUuid ()
+    {
+        return $this->uuid;
     }
 
     /**

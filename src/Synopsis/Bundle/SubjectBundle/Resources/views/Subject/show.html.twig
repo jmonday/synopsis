@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Hash</th>
             <th>Name</th>
             <th>Type</th>
             <th>Description</th>
@@ -19,13 +20,31 @@
         <tbody>
             <tr>
                 <td>{{ subject.id }}</td>
+                <td>{{ subject }}</td>
                 <td>{{ subject.name }}</td>
                 <td>{{ subject.type.namespace }}</td>
-                <th>{{ subject.description }}</th>
+                <td>{{ subject.description }}</td>
                 <td>{{ subject.createdAt | date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>
+
+    {# List the available actions available to take on this subject. #}
+    {% if subject.type.actions |length %}
+        <hr />
+        <h3>Available Actions</h3>
+
+        <ul>
+            {% for action in subject.type.actions %}
+                <li>
+                    #{{ action.id }} -
+                    <a href="{{ path('event_new', { 'subject' : subject.uuid, 'action' : action.id }) }}">
+                        {{ action.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     {% if events is defined and events | length %}
         <hr />

@@ -7,6 +7,10 @@
         <default key="_controller">SynopsisEventBundle:Event:index</default>
     </route>
 
+    <route id="event_new" pattern="/new/{subject}/{action}" methods="GET">
+        <default key="_controller">SynopsisEventBundle:Event:new</default>
+    </route>
+
     <route id="event_show" pattern="/{id}" methods="GET">
         <default key="_controller">SynopsisEventBundle:Event:show</default>
     </route>

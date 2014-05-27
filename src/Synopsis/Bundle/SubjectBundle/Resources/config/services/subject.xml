@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="synopsis.converter.subject.class">Synopsis\Bundle\SubjectBundle\Request\ParamConverter\SubjectParamConverter</parameter>
+        <parameter key="synopsis.entity.subject.class">Synopsis\Bundle\SubjectBundle\Entity\Subject</parameter>
+        <parameter key="synopsis.manager.subject.class">Synopsis\Bundle\SubjectBundle\Model\SubjectManager</parameter>
+    </parameters>
+
+    <services>
+        <!-- Subject Manger Service -->
+        <service id="synopsis.manager.subject" class="%synopsis.manager.subject.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="event_dispatcher" />
+            <argument>%synopsis.entity.subject.class%</argument>
+        </service>
+
+        <!-- Subject ParamConverter -->
+        <service id="synopsis.converter.subject" class="%synopsis.converter.subject.class%">
+            <tag name="request.param_converter" converter="subject" priority="10" />
+            <argument type="service" id="synopsis.manager.subject" />
+        </service>
+    </services>
+</container>

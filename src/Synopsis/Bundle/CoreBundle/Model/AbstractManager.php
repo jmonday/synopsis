@@ -20,7 +20,7 @@ abstract class AbstractManager
      *
      * @var EventDispatcherInterface
      */
-    private $dispatcher;
+    protected $dispatcher;
 
     /**
      * The entity class name.
@@ -28,28 +28,28 @@ abstract class AbstractManager
      *
      * @var string
      */
-    private $entityClass;
+    protected $entityClass;
 
     /**
      * Doctrine object manager.
      *
      * @var ObjectManager
      */
-    private $om;
+    protected $om;
 
     /**
      * The form factory.
      *
      * @var FormFactoryInterface
      */
-    private $formFactory;
+    protected $formFactory;
 
     /**
      * The event repository.
      *
      * @var mixed
      */
-    private $repository;
+    protected $repository;
 
     /**
      * Manager constructor.

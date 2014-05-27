@@ -4,6 +4,7 @@ namespace Synopsis\Bundle\SubjectBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
 
+use Symfony\Component\Validator\Constraints\All;
 use Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface;
 
@@ -14,6 +15,13 @@ use Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
  */
 interface SubjectInterface extends OwnableInterface
 {
+
+    /**
+     * Convert the subject to a string.
+     *
+     * @return string
+     */
+    public function __toString ();
 
     /**
      * Get the subject's ID number.
@@ -73,6 +81,20 @@ interface SubjectInterface extends OwnableInterface
      * @return SubjectTypeInterface
      */
     public function getType ();
+
+    /**
+     * Set the subject's UUID.
+     *
+     * @return SubjectInterface
+     */
+    public function setUuid ();
+
+    /**
+     * Get the subject's UUID.
+     *
+     * @return string
+     */
+    public function getUuid ();
 
     /**
      * Set the subject's creation time.

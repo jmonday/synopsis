@@ -4,7 +4,9 @@ namespace Synopsis\Bundle\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Synopsis\Bundle\EventBundle\Entity\Event;
+use Synopsis\Bundle\EventBundle\Entity\Event,
+    Synopsis\Bundle\SubjectBundle\Entity\Subject,
+    Synopsis\Bundle\SubjectBundle\Entity\SubjectAction;
 
 /**
  * Class EventController
@@ -24,6 +26,16 @@ class EventController extends Controller
         return $this->render('SynopsisEventBundle:Event:index.html.twig', [
             'events' => $this->get('synopsis.manager.event')->getCollectionOrdered(['createdAt' => 'DESC']),
         ]);
+    }
+
+    /**
+     * Create a new event.
+     *
+     * @param Subject $subject
+     * @param SubjectAction $action
+     */
+    public function newAction ( Subject $subject, SubjectAction $action )
+    {
     }
 
     /**
