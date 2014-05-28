@@ -13,6 +13,13 @@ interface SubjectActionInterface
 {
 
     /**
+     * Convert the subject action to a string.
+     *
+     * @return string
+     */
+    public function __toString ();
+
+    /**
      * Get the subject action's ID number.
      *
      * @return integer

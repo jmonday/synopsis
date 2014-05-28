@@ -5,6 +5,7 @@ namespace Synopsis\Bundle\EventBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Synopsis\Bundle\EventBundle\Entity\Event,
+    Synopsis\Bundle\EventBundle\Form\EventType,
     Synopsis\Bundle\SubjectBundle\Entity\Subject,
     Synopsis\Bundle\SubjectBundle\Entity\SubjectAction;
 
@@ -33,9 +34,18 @@ class EventController extends Controller
      *
      * @param Subject $subject
      * @param SubjectAction $action
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newAction ( Subject $subject, SubjectAction $action )
     {
+        $form = $this->createForm(new EventType(), new Event(), [
+            'subject' => $subject,
+            'action'  => $action,
+        ]);
+
+        return $this->render('SynopsisEventBundle:Event:new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

@@ -2,9 +2,12 @@
 
 namespace Synopsis\Bundle\EventBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use FOS\UserBundle\Model\UserInterface;
 
-use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
+use Synopsis\Bundle\AttributeBundle\Entity\Attribute,
+    Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
@@ -28,7 +31,12 @@ class Event implements EventInterface
     private $action;
 
     /**
-     * @var ValueInterface[]|\Doctrine\Common\Collections\Collection
+     * @var Attribute[]|ArrayCollection
+     */
+    private $attributes;
+
+    /**
+     * @var ValueInterface[]|ArrayCollection
      */
     private $attributeValues;
 
@@ -53,6 +61,23 @@ class Event implements EventInterface
     private $updatedAt;
 
     /**
+     * Simple constructor.
+     */
+    public function __construct ()
+    {
+        $this->attributes = new ArrayCollection();
+        $this->attributeValues = new ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString ()
+    {
+        return sprintf('%s@%s', __CLASS__, $this->getId());
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getId ()
@@ -63,9 +88,27 @@ class Event implements EventInterface
     /**
      * {@inheritdoc}
      */
+    public function setAction ( SubjectActionInterface $action )
+    {
+        $this->action = $action;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getAction ()
     {
         return $this->action;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addAttributeValue ( ValueInterface $value )
+    {
+        $this->attributeValues->add($value);
+
+        return $this;
     }
 
     /**
