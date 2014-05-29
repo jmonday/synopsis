@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\UserInterface;
 
 use Synopsis\Bundle\AttributeBundle\Entity\Attribute,
+    Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
     Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
@@ -104,8 +105,9 @@ class Event implements EventInterface
     /**
      * {@inheritdoc}
      */
-    public function addAttributeValue ( ValueInterface $value )
+    public function addAttributeValue ( AttributeInterface $attribute, ValueInterface $value )
     {
+        $value->setAttribute($attribute);
         $this->attributeValues->add($value);
 
         return $this;

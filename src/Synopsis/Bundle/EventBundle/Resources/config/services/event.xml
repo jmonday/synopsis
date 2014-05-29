@@ -11,7 +11,7 @@
     </parameters>
 
     <services>
-        <!-- Lead Repository Service -->
+        <!-- Event Repository Service -->
         <service id="synopsis.repository.event" class="%synopsis.repository.event.class%" factory-service="doctrine" factory-method="getRepository">
             <argument>%synopsis.entity.event.class%</argument>
         </service>

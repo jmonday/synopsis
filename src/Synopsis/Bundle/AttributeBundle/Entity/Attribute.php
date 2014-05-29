@@ -59,7 +59,7 @@ class Attribute implements AttributeInterface
      */
     public function __toString ()
     {
-        return $this->getName();
+        return sprintf('%s@%s', __CLASS__, $this->getId());
     }
 
     /**
@@ -147,7 +147,7 @@ class Attribute implements AttributeInterface
      */
     public function getConfiguration ()
     {
-        return $this->configuration;
+        return unserialize($this->configuration);
     }
 
     /**

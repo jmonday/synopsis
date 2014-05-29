@@ -21,7 +21,11 @@
             {% for event in events %}
                 <tr>
                     <td>{{ event.id }}</td>
-                    <td>{{ event.subject.name }}</td>
+                    <td>
+                        <a href="{{ path('subject_show', { 'uuid' : event.subject.uuid }) }}">
+                            {{ event.subject.name }}
+                        </a>
+                    </td>
                     <td>{{ event.subject.type.namespace }}</td>
                     <th>{{ event.action.name }}</th>
                     <td>

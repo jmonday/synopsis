@@ -4,6 +4,7 @@ namespace Synopsis\Bundle\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Synopsis\Bundle\AttributeBundle\Entity\Value;
 use Synopsis\Bundle\EventBundle\Entity\Event,
     Synopsis\Bundle\EventBundle\Form\EventType,
     Synopsis\Bundle\SubjectBundle\Entity\Subject,

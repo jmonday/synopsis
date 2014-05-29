@@ -4,7 +4,8 @@ namespace Synopsis\Bundle\EventBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-use Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
+use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
+    Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
@@ -49,10 +50,11 @@ interface EventInterface extends OwnableInterface
     /**
      * Add an attribute value to this event.
      *
+     * @param AttributeInterface $attribute The attribute for the added value.
      * @param ValueInterface $value The attribute value to add.
      * @return EventInterface
      */
-    public function addAttributeValue ( ValueInterface $value );
+    public function addAttributeValue ( AttributeInterface $attribute, ValueInterface $value );
 
     /**
      * Get the collection of related attribute values.

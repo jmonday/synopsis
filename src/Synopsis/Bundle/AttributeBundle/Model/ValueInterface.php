@@ -13,6 +13,13 @@ interface ValueInterface
 {
 
     /**
+     * Convert the attribute value to a string.
+     *
+     * @return string
+     */
+    public function __toString ();
+
+    /**
      * Get the value's ID number.
      *
      * @return integer

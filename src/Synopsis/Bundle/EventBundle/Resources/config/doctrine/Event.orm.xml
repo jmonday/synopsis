@@ -19,14 +19,14 @@
         </many-to-one>
 
         <!-- Event Attributes -->
-        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Attribute" mapped-by="event" field="attributes">
+        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Attribute" field="attributes">
             <cascade>
                 <cascade-all />
             </cascade>
         </one-to-many>
 
         <!-- Event has many AttributeValues -->
-        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Value" mapped-by="event" field="attributeValues">
+        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Value" mapped-by="event" field="attributeValues" fetch="EAGER">
             <cascade>
                 <cascade-all />
             </cascade>

@@ -2,42 +2,61 @@
 
 namespace Synopsis\Bundle\AttributeBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\AbstractType,
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
+/**
+ * Class ValueType
+ *
+ * @package Synopsis\Bundle\AttributeBundle\Form
+ */
 class ValueType extends AbstractType
 {
-        /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+
+    /**
+     * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm ( FormBuilderInterface $builder, array $options )
     {
         $builder
-            ->add('value')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('event')
             ->add('attribute')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
-    }
-    
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Synopsis\Bundle\AttributeBundle\Entity\Value'
-        ));
+
+        $builder->addEventListener ( FormEvents::PRE_SET_DATA, function ( FormEvent $event ) {
+            /* @var \Synopsis\Bundle\AttributeBundle\Entity\Value $value */
+            $form = $event->getForm();
+            $value = $event->getData();
+
+            $form->add('value', $value->getAttribute()->getType(), [
+                'label' => $value->getAttribute()->getName(),
+            ]);
+        });
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getName()
+    public function setDefaultOptions ( OptionsResolverInterface $resolver )
     {
-        return 'synopsis_bundle_attributebundle_value';
+        $resolver
+            ->setDefaults([
+                'data_class' => 'Synopsis\Bundle\AttributeBundle\Entity\Value'
+            ])
+        ;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName ()
+    {
+        return 'attribute_value';
+    }
+
 }
