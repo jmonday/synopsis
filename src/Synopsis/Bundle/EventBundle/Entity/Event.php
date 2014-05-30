@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\UserInterface;
 
 use Synopsis\Bundle\AttributeBundle\Entity\Attribute,
+    Synopsis\Bundle\AttributeBundle\Entity\Value,
     Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
     Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface,
@@ -64,10 +65,14 @@ class Event implements EventInterface
     /**
      * Simple constructor.
      */
-    public function __construct ()
+    public function __construct ( SubjectInterface $subject, SubjectActionInterface $action )
     {
         $this->attributes = new ArrayCollection();
         $this->attributeValues = new ArrayCollection();
+
+        $this->setSubject($subject);
+        $this->setAction($action);
+        $this->initAttributeValues();
     }
 
     /**
@@ -76,6 +81,16 @@ class Event implements EventInterface
     public function __toString ()
     {
         return sprintf('%s@%s', __CLASS__, $this->getId());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function initAttributeValues ()
+    {
+        foreach ( $this->getAction()->getAttributes() as $attribute ) {
+            $this->addAttributeValue($attribute, new Value());
+        }
     }
 
     /**

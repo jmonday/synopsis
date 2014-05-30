@@ -24,8 +24,8 @@ class ValueType extends AbstractType
         $builder
             ->add('event')
             ->add('attribute')
-            ->add('createdAt')
-            ->add('updatedAt')
+            // ->add('createdAt')
+            // ->add('updatedAt')
         ;
 
         $builder->addEventListener ( FormEvents::PRE_SET_DATA, function ( FormEvent $event ) {
@@ -33,9 +33,7 @@ class ValueType extends AbstractType
             $form = $event->getForm();
             $value = $event->getData();
 
-            $form->add('value', $value->getAttribute()->getType(), [
-                'label' => $value->getAttribute()->getName(),
-            ]);
+            $form->add('value', $value->getAttribute()->getType(), $value->getAttribute()->getConfiguration());
         });
     }
 

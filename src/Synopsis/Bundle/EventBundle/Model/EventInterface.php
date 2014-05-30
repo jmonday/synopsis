@@ -26,6 +26,13 @@ interface EventInterface extends OwnableInterface
     public function __toString ();
 
     /**
+     * Initialize the event's attribute values.
+     *
+     * @return void
+     */
+    public function initAttributeValues ();
+
+    /**
      * Get the event's ID number.
      *
      * @return integer

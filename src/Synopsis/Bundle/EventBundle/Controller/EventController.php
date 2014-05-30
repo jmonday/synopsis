@@ -39,10 +39,7 @@ class EventController extends Controller
      */
     public function newAction ( Subject $subject, SubjectAction $action )
     {
-        $form = $this->createForm(new EventType(), new Event(), [
-            'subject' => $subject,
-            'action'  => $action,
-        ]);
+        $form = $this->createForm(new EventType(), new Event($subject, $action));
 
         return $this->render('SynopsisEventBundle:Event:new.html.twig', [
             'form' => $form->createView(),

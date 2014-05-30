@@ -147,7 +147,7 @@ class Attribute implements AttributeInterface
      */
     public function getConfiguration ()
     {
-        return unserialize($this->configuration);
+        return $this->configuration;
     }
 
     /**
