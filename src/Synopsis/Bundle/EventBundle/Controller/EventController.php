@@ -2,13 +2,11 @@
 
 namespace Synopsis\Bundle\EventBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpFoundation\Request;
 
-use Synopsis\Bundle\AttributeBundle\Entity\Value;
-use Synopsis\Bundle\EventBundle\Entity\Event,
-    Synopsis\Bundle\EventBundle\Form\EventType,
-    Synopsis\Bundle\SubjectBundle\Entity\Subject,
-    Synopsis\Bundle\SubjectBundle\Entity\SubjectAction;
+use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException,
+    Synopsis\Bundle\EventBundle\Entity\Event;
 
 /**
  * Class EventController
@@ -33,17 +31,19 @@ class EventController extends Controller
     /**
      * Create a new event.
      *
-     * @param Subject $subject
-     * @param SubjectAction $action
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function newAction ( Subject $subject, SubjectAction $action )
+    public function newAction ( Request $request )
     {
-        $form = $this->createForm(new EventType(), new Event($subject, $action));
-
-        return $this->render('SynopsisEventBundle:Event:new.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        try {
+            $event = $this->get('synopsis.manager.event')->post($request);
+            return $this->redirect($this->generateUrl('event_show', ['id' => $event->getId()]));
+        } catch ( InvalidFormException $exception ) {
+            return $this->render('SynopsisEventBundle:Event:new.html.twig', [
+                'form' => $exception->getForm()->createView(),
+            ]);
+        }
     }
 
     /**

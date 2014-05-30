@@ -4,10 +4,9 @@ namespace Synopsis\Bundle\EventBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-use Synopsis\Bundle\AttributeBundle\Entity\Attribute,
-    Synopsis\Bundle\AttributeBundle\Entity\Value,
+use Synopsis\Bundle\AttributeBundle\Entity\Value,
     Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
     Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface,
@@ -60,10 +59,11 @@ class Event implements EventInterface
     /**
      * Simple constructor.
      */
-    public function __construct ( SubjectInterface $subject, SubjectActionInterface $action )
+    public function __construct ( UserInterface $user, SubjectInterface $subject, SubjectActionInterface $action )
     {
         $this->attributeValues = new ArrayCollection();
 
+        $this->setUser($user);
         $this->setSubject($subject);
         $this->setAction($action);
         $this->initAttributeValues();
@@ -151,13 +151,23 @@ class Event implements EventInterface
     /**
      * {@inheritdoc}
      */
+    public function setUser ( UserInterface $user )
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUser ()
     {
         return $this->user;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritdoc
      */
     public function setCreatedAt ( \DateTime $createdAt )
     {
@@ -190,6 +200,35 @@ class Event implements EventInterface
     public function getUpdatedAt ()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * This method is automatically called by Doctrine lifecycle events, the event obviously being, pre-flush.
+     */
+    public function preFlush ()
+    {
+        /**
+         * Now that we have persisted the event, we can associate it to the related attribute values.
+         */
+        foreach ( $this->attributeValues as $value ) {
+            $value->setEvent($this);
+        }
+    }
+
+    /**
+     * This method is automatically called by Doctrine lifecycle events, the event obviously being, pre-persist.
+     */
+    public function prePersist ()
+    {
+        $this->createdAt = $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * This method is automatically called by Doctrine lifecycle events, the event obviously being, pre-update.
+     */
+    public function preUpdate ()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
 }

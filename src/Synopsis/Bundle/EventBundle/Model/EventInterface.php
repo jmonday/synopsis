@@ -86,30 +86,32 @@ interface EventInterface extends OwnableInterface
     public function getSubject ();
 
     /**
-     * Set the event's creation time.
+     * Set the attribute's creation time.
+     * This method should be called automatically via Doctrine lifecycle callbacks.
      *
-     * @param \DateTime $createdAt
+     * @param \DateTime $createdAt The timestamp the event was created.
      * @return EventInterface
      */
     public function setCreatedAt ( \DateTime $createdAt );
 
     /**
-     * Get the event's creation time.
+     * Get the attribute's creation time.
      *
      * @return \DateTime
      */
     public function getCreatedAt ();
 
     /**
-     * Set the event's update time.
+     * Set the attribute's update time.
+     * This method should be called automatically via Doctrine lifecycle callbacks.
      *
-     * @param \DateTime $updatedAt
+     * @param \DateTime $updatedAt The timestamp the event was most recently updated.
      * @return EventInterface
      */
     public function setUpdatedAt ( \DateTime $updatedAt );
 
     /**
-     * Get the event's update time.
+     * Get the attribute's update time.
      *
      * @return \DateTime
      */

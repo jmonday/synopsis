@@ -6,7 +6,7 @@ use Rhumsaa\Uuid\Uuid;
 
 use Doctrine\Common\Collections\Collection;
 
-use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 use Synopsis\Bundle\EventBundle\Model\EventInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectInterface,
@@ -137,6 +137,16 @@ class Subject implements SubjectInterface
     public function getType ()
     {
         return $this->type;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser ( UserInterface $user )
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
     /**

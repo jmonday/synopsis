@@ -113,11 +113,10 @@ class Value implements ValueInterface
     /**
      * {@inheritdoc
      */
-    public function setCreatedAt ( \DateTime $createdAt )
+    public function setCreatedAt ()
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -131,11 +130,9 @@ class Value implements ValueInterface
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt ( \DateTime $updatedAt )
+    public function setUpdatedAt ()
     {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
+        $this->updatedAt = new \DateTime();
     }
 
     /**

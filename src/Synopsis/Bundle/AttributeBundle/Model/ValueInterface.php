@@ -73,11 +73,11 @@ interface ValueInterface
 
     /**
      * Set the attribute's creation time.
+     * This method should be called automatically via Doctrine lifecycle callbacks.
      *
-     * @param \DateTime $createdAt
-     * @return AttributeInterface
+     * @return void
      */
-    public function setCreatedAt ( \DateTime $createdAt );
+    public function setCreatedAt ();
 
     /**
      * Get the attribute's creation time.
@@ -88,11 +88,11 @@ interface ValueInterface
 
     /**
      * Set the attribute's update time.
+     * This method should be called automatically via Doctrine lifecycle callbacks.
      *
-     * @param \DateTime $updatedAt
-     * @return AttributeInterface
+     * @return void
      */
-    public function setUpdatedAt ( \DateTime $updatedAt );
+    public function setUpdatedAt ();
 
     /**
      * Get the attribute's update time.

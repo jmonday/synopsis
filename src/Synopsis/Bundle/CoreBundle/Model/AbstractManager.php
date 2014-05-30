@@ -4,6 +4,7 @@ namespace Synopsis\Bundle\CoreBundle\Model;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface,
     Symfony\Component\Form\FormFactoryInterface;
 
@@ -14,6 +15,13 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface,
  */
 abstract class AbstractManager
 {
+
+    /**
+     * The service container.
+     *
+     * @var Container
+     */
+    protected $container;
 
     /**
      * The event dispatcher.
@@ -54,18 +62,17 @@ abstract class AbstractManager
     /**
      * Manager constructor.
      *
-     * @param ObjectManager $om Doctrine object manager.
-     * @param FormFactoryInterface $formFactory The form factory.
-     * @param EventDispatcherInterface $dispatcher The event dispatcher service.
+     * @param Container $container The service container.
      * @param string $entityClass The entity class.
      */
-    public function __construct ( ObjectManager $om, FormFactoryInterface $formFactory, EventDispatcherInterface $dispatcher, $entityClass )
+    public function __construct ( Container $container, $entityClass )
     {
-        $this->om          = $om;
+        $this->container   = $container;
         $this->entityClass = $entityClass;
+        $this->om          = $this->container->get('doctrine.orm.entity_manager');
+        $this->formFactory = $this->container->get('form.factory');
+        $this->dispatcher  = $this->container->get('event_dispatcher');
         $this->repository  = $this->om->getRepository($this->entityClass);
-        $this->formFactory = $formFactory;
-        $this->dispatcher  = $dispatcher;
     }
 
     /**

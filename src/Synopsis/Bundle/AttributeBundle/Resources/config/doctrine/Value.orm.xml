@@ -25,5 +25,10 @@
                 <cascade-all />
             </cascade>
         </many-to-one>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="setCreatedAt" />
+            <lifecycle-callback type="preUpdate" method="setUpdatedAt" />
+        </lifecycle-callbacks>
     </entity>
 </doctrine-mapping>

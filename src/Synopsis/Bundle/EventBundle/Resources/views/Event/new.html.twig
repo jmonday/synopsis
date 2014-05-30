@@ -3,5 +3,8 @@
 {% block title %}SynopsisEventBundle:Event:show{% endblock %}
 
 {% block body %}
-    {{ form_widget(form) }}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" />
+    {{ form_end(form) }}
 {% endblock %}

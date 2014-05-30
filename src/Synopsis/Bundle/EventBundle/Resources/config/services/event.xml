@@ -5,12 +5,18 @@
 
     <parameters>
         <parameter key="synopsis.entity.event.class">Synopsis\Bundle\EventBundle\Entity\Event</parameter>
+        <parameter key="synopsis.form.type.event.class">Synopsis\Bundle\EventBundle\Form\EventType</parameter>
         <parameter key="synopsis.repository.event.class">Synopsis\Bundle\EventBundle\Entity\EventRepository</parameter>
         <parameter key="synopsis.manager.event.class">Synopsis\Bundle\EventBundle\Model\EventManager</parameter>
         <!--<parameter key="synopsis.subscriber.event.class">Synopsis\Bundle\EventBundle\Event\EventSubscriber</parameter>-->
     </parameters>
 
     <services>
+        <!-- Event Form -->
+        <service id="synopsis.form.type.event" class="%synopsis.form.type.event.class%">
+            <tag name="form.type" alias="event" />
+        </service>
+
         <!-- Event Repository Service -->
         <service id="synopsis.repository.event" class="%synopsis.repository.event.class%" factory-service="doctrine" factory-method="getRepository">
             <argument>%synopsis.entity.event.class%</argument>
@@ -18,9 +24,7 @@
 
         <!-- Event Manger Service -->
         <service id="synopsis.manager.event" class="%synopsis.manager.event.class%">
-            <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="form.factory" />
-            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="service_container" />
             <argument>%synopsis.entity.event.class%</argument>
         </service>
 

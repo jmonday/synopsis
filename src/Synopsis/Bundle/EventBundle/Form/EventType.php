@@ -22,9 +22,6 @@ class EventType extends AbstractType
     public function buildForm ( FormBuilderInterface $builder, array $options )
     {
         $builder
-            ->add('user')
-            ->add('subject')
-            ->add('action')
             ->add('attributeValues', 'collection', [
                 'allow_add'    => false,
                 'allow_delete' => false,
