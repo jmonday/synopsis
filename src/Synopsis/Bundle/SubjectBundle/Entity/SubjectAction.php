@@ -6,6 +6,7 @@ use Rhumsaa\Uuid\Uuid;
 
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
+use Synopsis\Bundle\SubjectBundle\Model\SubjectInterface;
 
 /**
  * Class SubjectAction

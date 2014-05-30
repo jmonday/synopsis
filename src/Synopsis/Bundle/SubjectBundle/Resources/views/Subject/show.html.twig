@@ -41,7 +41,8 @@
                     <a href="{{ path('event_new', { 'subject' : subject.uuid, 'action' : action.uuid }) }}">
                         {{ action.name }}
                     </a>
-                    - {{ action.uuid }}
+                    - {{ action.uuid }}<br />
+                    <img src="{{ qr_code(url('event_new', { 'subject' : subject.uuid, 'action' : action.uuid })) }}" border="1" alt="" />
                 </li>
             {% endfor %}
         </ul>
