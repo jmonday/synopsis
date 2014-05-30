@@ -2,6 +2,8 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
+use Rhumsaa\Uuid\Uuid;
+
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
@@ -34,6 +36,11 @@ class SubjectAction implements SubjectActionInterface
     private $description;
 
     /**
+     * @var string
+     */
+    private $uuid;
+
+    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -48,7 +55,7 @@ class SubjectAction implements SubjectActionInterface
      */
     public function __toString ()
     {
-        return sprintf('%s@%s', __CLASS__, $this->getId());
+        return sprintf('%s@%s', __CLASS__, $this->getUuid());
     }
 
     /**
@@ -97,6 +104,22 @@ class SubjectAction implements SubjectActionInterface
     public function getDescription ()
     {
         return $this->description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUuid ()
+    {
+        $this->uuid = Uuid::uuid5(Uuid::NIL, $this->getId());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUuid ()
+    {
+        return ( empty($this->uuid) ) ? $this->uuid = Uuid::uuid5(Uuid::NIL, $this->getId()) : $this->uuid;
     }
 
     /**

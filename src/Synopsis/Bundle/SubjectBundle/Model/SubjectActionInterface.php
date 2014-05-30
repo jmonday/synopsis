@@ -62,6 +62,20 @@ interface SubjectActionInterface
     public function getDescription ();
 
     /**
+     * Set the subject action's UUID.
+     *
+     * @return SubjectActionInterface
+     */
+    public function setUuid ();
+
+    /**
+     * Get the subject action's UUID.
+     *
+     * @return string
+     */
+    public function getUuid ();
+
+    /**
      * Set the subject action's creation time.
      *
      * @param \DateTime $createdAt

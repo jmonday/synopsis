@@ -38,9 +38,10 @@
             {% for action in subject.type.actions %}
                 <li>
                     #{{ action.id }} -
-                    <a href="{{ path('event_new', { 'subject' : subject.uuid, 'action' : action.id }) }}">
+                    <a href="{{ path('event_new', { 'subject' : subject.uuid, 'action' : action.uuid }) }}">
                         {{ action.name }}
                     </a>
+                    - {{ action.uuid }}
                 </li>
             {% endfor %}
         </ul>

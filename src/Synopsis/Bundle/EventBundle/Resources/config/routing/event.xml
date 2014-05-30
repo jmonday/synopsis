@@ -7,8 +7,10 @@
         <default key="_controller">SynopsisEventBundle:Event:index</default>
     </route>
 
-    <route id="event_new" pattern="/new/{subject}/{action}" methods="GET">
+    <route id="event_new" pattern="/{subject}/{action}" methods="GET">
         <default key="_controller">SynopsisEventBundle:Event:new</default>
+        <requirement key="subject">[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}</requirement>
+        <requirement key="action">[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}</requirement>
     </route>
 
     <route id="event_show" pattern="/{id}" methods="GET">

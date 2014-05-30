@@ -4,7 +4,6 @@ namespace Synopsis\Bundle\SubjectBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
 
-use Symfony\Component\Validator\Constraints\All;
 use Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface;
 

@@ -33,11 +33,6 @@ class Event implements EventInterface
     private $action;
 
     /**
-     * @var Attribute[]|ArrayCollection
-     */
-    private $attributes;
-
-    /**
      * @var ValueInterface[]|ArrayCollection
      */
     private $attributeValues;
@@ -67,7 +62,6 @@ class Event implements EventInterface
      */
     public function __construct ( SubjectInterface $subject, SubjectActionInterface $action )
     {
-        $this->attributes = new ArrayCollection();
         $this->attributeValues = new ArrayCollection();
 
         $this->setSubject($subject);

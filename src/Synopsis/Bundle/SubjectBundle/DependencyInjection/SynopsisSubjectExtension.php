@@ -24,5 +24,6 @@ class SynopsisSubjectExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services/subject.xml');
+        $loader->load('services/subjectAction.xml');
     }
 }

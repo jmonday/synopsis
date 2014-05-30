@@ -18,15 +18,8 @@
             </cascade>
         </many-to-one>
 
-        <!-- Event Attributes -->
-        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Attribute" field="attributes">
-            <cascade>
-                <cascade-all />
-            </cascade>
-        </one-to-many>
-
         <!-- Event has many AttributeValues -->
-        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Value" mapped-by="event" field="attributeValues" fetch="EAGER">
+        <one-to-many target-entity="Synopsis\Bundle\AttributeBundle\Entity\Value" mapped-by="event" field="attributeValues">
             <cascade>
                 <cascade-all />
             </cascade>
