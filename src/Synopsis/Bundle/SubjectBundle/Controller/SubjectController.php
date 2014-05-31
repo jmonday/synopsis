@@ -2,9 +2,11 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpFoundation\Request;
 
-use Synopsis\Bundle\SubjectBundle\Entity\Subject;
+use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException,
+    Synopsis\Bundle\SubjectBundle\Entity\Subject;
 
 /**
  * Class SubjectController
@@ -13,6 +15,25 @@ use Synopsis\Bundle\SubjectBundle\Entity\Subject;
  */
 class SubjectController extends Controller
 {
+
+    public function indexAction ()
+    {
+        return $this->render('SynopsisSubjectBundle:Subject:index.html.twig', [
+            'subjects' => $this->get('synopsis.manager.subject')->getCollectionOrdered(['createdAt' => 'DESC']),
+        ]);
+    }
+
+    public function newAction ( Request $request )
+    {
+        try {
+            $subject = $this->get('synopsis.manager.subject')->post($request);
+            return $this->redirect($this->generateUrl('subject_show', ['uuid' => $subject->getUuid()]));
+        } catch ( InvalidFormException $exception ) {
+            return $this->render('SynopsisSubjectBundle:Subject:new.html.twig', [
+                'form' => $exception->getForm()->createView(),
+            ]);
+        }
+    }
 
     /**
      * View the details for a specific subject.

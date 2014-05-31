@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}SynopsisSubjectBundle:Subject:index{% endblock %}
+
+{% block body %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>UUID</th>
+                <th>Type</th>
+                <th>Subject</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for subject in subjects %}
+                <tr>
+                    <td>{{ subject.id }}</td>
+                    <td>
+                        <a href="{{ path('subject_show', { 'uuid' : subject.uuid}) }}">
+                            {{ subject.uuid }}
+                        </a>
+                    </td>
+                    <td>{{ subject.type.namespace }}</td>
+                    <td>{{ subject.name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

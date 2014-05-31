@@ -4,8 +4,9 @@ namespace Synopsis\Bundle\CoreBundle\Model;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface,
+use Symfony\Component\DependencyInjection\Container,
+    Symfony\Component\EventDispatcher\EventDispatcherInterface,
+    Symfony\Component\Form\Form,
     Symfony\Component\Form\FormFactoryInterface;
 
 /**
@@ -89,6 +90,8 @@ abstract class AbstractManager
     /**
      * Get a collection of entities matching an optional array of criteria.
      *
+     * @todo: This belongs in a repository!
+     *
      * @param array $criteria An optional array of criteria.
      * @param array $order An optional array of order parameters.
      * @return \Doctrine\Common\Collections\Collection
@@ -100,6 +103,8 @@ abstract class AbstractManager
 
     /**
      * Get an ordered collection of entities matching an optional array of criteria.
+     *
+     * @todo: This belongs in a repository!
      *
      * @param array $order An array of order parameters.
      * @param array $criteria An optional array of criteria.

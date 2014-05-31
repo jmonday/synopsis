@@ -3,16 +3,19 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <!-- Event Listing-->
     <route id="event_index" pattern="/" methods="GET">
         <default key="_controller">SynopsisEventBundle:Event:index</default>
     </route>
 
+    <!-- New Event -->
     <route id="event_new" pattern="/{subject}/{action}" methods="GET|POST">
         <default key="_controller">SynopsisEventBundle:Event:new</default>
         <requirement key="subject">[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}</requirement>
         <requirement key="action">[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}</requirement>
     </route>
 
+    <!-- Show Event -->
     <route id="event_show" pattern="/{id}" methods="GET">
         <default key="_controller">SynopsisEventBundle:Event:show</default>
     </route>

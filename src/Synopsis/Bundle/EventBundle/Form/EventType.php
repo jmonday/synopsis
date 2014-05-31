@@ -27,6 +27,9 @@ class EventType extends AbstractType
                 'allow_delete' => false,
                 'label'        => 'Attribute Values',
                 'type'         => new ValueType(),
+                'options'      => [
+                    'label' => false,
+                ]
             ])
         ;
     }

@@ -4,12 +4,18 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="synopsis.form.type.subject.class">Synopsis\Bundle\SubjectBundle\Form\SubjectType</parameter>
         <parameter key="synopsis.converter.subject.class">Synopsis\Bundle\SubjectBundle\Request\ParamConverter\SubjectParamConverter</parameter>
         <parameter key="synopsis.entity.subject.class">Synopsis\Bundle\SubjectBundle\Entity\Subject</parameter>
         <parameter key="synopsis.manager.subject.class">Synopsis\Bundle\SubjectBundle\Model\SubjectManager</parameter>
     </parameters>
 
     <services>
+        <!-- Subject Form -->
+        <service id="synopsis.form.type.subject" class="%synopsis.form.type.subject.class%">
+            <tag name="form.type" alias="subject" />
+        </service>
+
         <!-- Subject Manger Service -->
         <service id="synopsis.manager.subject" class="%synopsis.manager.subject.class%">
             <argument type="service" id="service_container" />

@@ -162,7 +162,12 @@ class Subject implements SubjectInterface
      */
     public function setUuid ()
     {
-        $this->uuid = Uuid::uuid5(Uuid::NIL, $this->getId());
+        $key = sprintf('%d:%s',
+            $this->getUser()->getId(),
+            $this->getCreatedAt()->format('Y-m-d H:i:s')
+        );
+
+        $this->uuid = Uuid::uuid5(Uuid::NIL, $key);
     }
 
     /**
@@ -207,6 +212,23 @@ class Subject implements SubjectInterface
     public function getUpdatedAt ()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * This method is automatically called by Doctrine lifecycle events, the event obviously being, pre-persist.
+     */
+    public function prePersist ()
+    {
+        $this->createdAt = $this->updatedAt = new \DateTime();
+        $this->setUuid();
+    }
+
+    /**
+     * This method is automatically called by Doctrine lifecycle events, the event obviously being, pre-update.
+     */
+    public function preUpdate ()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
 }

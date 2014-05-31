@@ -11,6 +11,13 @@ interface SubjectTypeInterface
 {
 
     /**
+     * Convert the subject to a string.
+     *
+     * @return string
+     */
+    public function __toString ();
+
+    /**
      * Get the subject type's ID number.
      *
      * @return integer

@@ -51,6 +51,14 @@ class SubjectType implements SubjectTypeInterface
     /**
      * {@inheritdoc}
      */
+    public function __toString ()
+    {
+        return sprintf('%s@%s', __CLASS__, $this->getId());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getId ()
     {
         return $this->id;

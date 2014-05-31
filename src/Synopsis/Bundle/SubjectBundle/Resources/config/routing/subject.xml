@@ -3,6 +3,17 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <!-- Subject Listing -->
+    <route id="subject_index" pattern="/" methods="GET">
+        <default key="_controller">SynopsisSubjectBundle:Subject:index</default>
+    </route>
+
+    <!-- New Subject -->
+    <route id="subject_new" pattern="/new" methods="GET|POST">
+        <default key="_controller">SynopsisSubjectBundle:Subject:new</default>
+    </route>
+
+    <!-- Show Subject -->
     <route id="subject_show" pattern="/{uuid}" methods="GET">
         <default key="_controller">SynopsisSubjectBundle:Subject:show</default>
     </route>

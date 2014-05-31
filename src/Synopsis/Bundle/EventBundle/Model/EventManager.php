@@ -46,7 +46,7 @@ class EventManager extends AbstractManager
      * @throws InvalidFormException
      * @return EventInterface The processed event.
      */
-    public function processForm ( Form $form, Request $request, EventInterface $event )
+    protected function processForm ( Form $form, Request $request, EventInterface $event )
     {
         $form->handleRequest($request);
 
@@ -67,7 +67,7 @@ class EventManager extends AbstractManager
      * @param string $method The HTTP method.
      * @return Form
      */
-    private function createForm ( EventInterface $event, $method )
+    protected function createForm ( EventInterface $event, $method )
     {
         return $this->formFactory->create('event', $event, ['method' => $method]);
     }

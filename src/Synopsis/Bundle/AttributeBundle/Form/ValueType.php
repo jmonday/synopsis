@@ -23,10 +23,13 @@ class ValueType extends AbstractType
     {
         $builder->addEventListener ( FormEvents::PRE_SET_DATA, function ( FormEvent $event ) {
             /* @var \Synopsis\Bundle\AttributeBundle\Entity\Value $value */
-            $form = $event->getForm();
+            $form  = $event->getForm();
             $value = $event->getData();
 
-            $form->add('value', $value->getAttribute()->getType(), $value->getAttribute()->getConfiguration());
+            $form->add('value',
+                $value->getAttribute()->getType(),
+                $value->getAttribute()->getConfiguration()
+            );
         });
     }
 
