@@ -60,6 +60,7 @@
                 <th>Subject Type</th>
                 <th>Action</th>
                 <th>Event Attributes</th>
+                <th>Comments</th>
                 <th>Date</th>
             </tr>
             </thead>
@@ -75,12 +76,13 @@
                         <ul>
                             {% for value in event.attributeValues %}
                                 <li>
-                                    <strong>{{ value.attribute }}:</strong>
+                                    <strong>{{ value.attribute.name }}:</strong>
                                     {{ value.value }}
                                 </li>
                             {% endfor %}
                         </ul>
                     </td>
+                    <td>{{ event.comments }}</td>
                     <td>{{ event.createdAt | date('Y-m-d H:i:s') }}</td>
                 </tr>
             {% endfor %}

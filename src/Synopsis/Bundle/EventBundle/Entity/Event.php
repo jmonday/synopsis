@@ -37,6 +37,11 @@ class Event implements EventInterface
     private $attributeValues;
 
     /**
+     * @var string
+     */
+    private $comments;
+
+    /**
      * @var SubjectInterface
      */
     private $subject;
@@ -128,6 +133,24 @@ class Event implements EventInterface
     public function getAttributeValues ()
     {
         return $this->attributeValues;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setComments ( $comments )
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getComments ()
+    {
+        return $this->comments;
     }
 
     /**

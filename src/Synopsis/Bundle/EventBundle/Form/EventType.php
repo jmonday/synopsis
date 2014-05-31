@@ -31,6 +31,7 @@ class EventType extends AbstractType
                     'label' => false,
                 ]
             ])
+            ->add('comments')
         ;
     }
 

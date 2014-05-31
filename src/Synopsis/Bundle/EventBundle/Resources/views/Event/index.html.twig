@@ -32,7 +32,7 @@
                         <ul>
                             {% for value in event.attributeValues %}
                                 <li>
-                                    <strong>{{ value.attribute }}:</strong>
+                                    <strong>{{ value.attribute.name }}:</strong>
                                     {{ value.value }}
                                 </li>
                             {% endfor %}

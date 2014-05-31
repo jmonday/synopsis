@@ -71,6 +71,21 @@ interface EventInterface extends OwnableInterface
     public function getAttributeValues ();
 
     /**
+     * Set the event's comments.
+     *
+     * @param string $comments The event's comments.
+     * @return EventInterface
+     */
+    public function setComments ( $comments );
+
+    /**
+     * Get the event's comments.
+     *
+     * @return string
+     */
+    public function getComments ();
+
+    /**
      * Set the event's related subject.
      *
      * @param SubjectInterface $subject The subject to relate.

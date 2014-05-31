@@ -18,12 +18,16 @@
                 <tr>
                     <td>{{ subject.id }}</td>
                     <td>
-                        <a href="{{ path('subject_show', { 'uuid' : subject.uuid}) }}">
+                        <a href="{{ path('subject_show', { 'uuid' : subject.uuid }) }}">
                             {{ subject.uuid }}
                         </a>
                     </td>
                     <td>{{ subject.type.namespace }}</td>
-                    <td>{{ subject.name }}</td>
+                    <td>
+                        <a href="{{ path('subject_show', { 'uuid' : subject.uuid }) }}">
+                            {{ subject.name }}
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
