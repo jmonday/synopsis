@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}SynopsisSubjectBundle:SubjectAction:index{% endblock %}
+
+{% block body %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>UUID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for action in actions %}
+                <tr>
+                    <td>{{ action.id }}</td>
+                    <td>
+                        <a href="{{ path('subject_action_show', { 'uuid' : action.uuid }) }}">
+                            {{ action.uuid }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('subject_action_show', { 'uuid' : action.uuid }) }}">
+                            {{ action.name }}
+                        </a>
+                    </td>
+                    <td>{{ action.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

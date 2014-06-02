@@ -6,8 +6,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Symfony\Component\DependencyInjection\Container,
     Symfony\Component\EventDispatcher\EventDispatcherInterface,
-    Symfony\Component\Form\Form,
-    Symfony\Component\Form\FormFactoryInterface;
+    Symfony\Component\Form\FormFactoryInterface,
+    Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class AbstractManager
@@ -80,11 +80,18 @@ abstract class AbstractManager
      * Get a specific entity via ID.
      *
      * @param mixed $id The ID of the entity to get.
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @return mixed
      */
     public function get ( $id )
     {
-        return $this->repository->find($id);
+        $entity = $this->repository->find($id);
+
+        if ( ! $entity ) {
+            throw new NotFoundHttpException('The specified entity does not exist.');
+        }
+
+        return $entity;
     }
 
     /**

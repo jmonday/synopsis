@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}SynopsisSubjectBundle:SubjectAction:view{% endblock %}
+
+{% block body %}
+    <p>Subject Action View</p>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>UUID</th>
+            <th>Hash</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{ action.id }}</td>
+                <td>{{ action.uuid }}</td>
+                <td>{{ action }}</td>
+                <td>{{ action.name }}</td>
+                <td>{{ action.description }}</td>
+                <td>{{ action.createdAt | date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

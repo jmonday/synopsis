@@ -25,5 +25,12 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+
+        <!-- Subject User -->
+        <many-to-one target-entity="Synopsis\Bundle\UserBundle\Entity\User" field="user">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

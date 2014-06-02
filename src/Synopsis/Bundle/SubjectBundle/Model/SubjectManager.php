@@ -2,11 +2,12 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Model;
 
-use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Form,
+    Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException;
-use Synopsis\Bundle\CoreBundle\Model\AbstractManager;
+use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException,
+    Synopsis\Bundle\CoreBundle\Model\AbstractManager;
 
 /**
  * Class SubjectManager
@@ -22,13 +23,20 @@ class SubjectManager extends AbstractManager
      * @todo: This belongs in the subject repository!
      *
      * @param string $uuid The subject's UUID.
+     * @throws NotFoundHttpException
      * @return SubjectInterface
      */
     public function getByUuid ( $uuid )
     {
-        return $this->repository->findOneBy([
+        $subject = $this->repository->findOneBy([
             'uuid' => $uuid,
         ]);
+
+        if ( ! $subject ) {
+            throw new NotFoundHttpException('The specified subject does not exist.');
+        }
+
+        return $subject;
     }
 
     /**

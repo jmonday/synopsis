@@ -37,7 +37,7 @@ class SubjectParamConverter implements ParamConverterInterface
      */
     public function apply ( Request $request, ParamConverter $configuration )
     {
-        $uuid    = $request->attributes->get('subject');
+        $uuid    = $request->attributes->get('uuid');
         $subject = $this->subjectManager->getByUuid($uuid);
         $param   = $configuration->getName();
 

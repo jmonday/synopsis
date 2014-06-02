@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <!-- Subject Action Listing -->
+    <route id="subject_action_index" pattern="/" methods="GET">
+        <default key="_controller">SynopsisSubjectBundle:SubjectAction:index</default>
+    </route>
+
+    <!-- Show Subject Action -->
+    <route id="subject_action_show" pattern="/{uuid}" methods="GET">
+        <default key="_controller">SynopsisSubjectBundle:SubjectAction:show</default>
+    </route>
+</routes>

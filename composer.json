@@ -21,6 +21,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
 
         "friendsofsymfony/user-bundle": "~2.0@dev",
+        "knplabs/knp-menu": "2.0.*@dev",
+        "knplabs/knp-menu-bundle":"dev-master",
+        "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "rhumsaa/uuid": "2.8.*@dev"
     },
     "scripts": {

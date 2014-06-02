@@ -4,5 +4,8 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <!-- Subject Routes -->
-    <import resource="@SynopsisSubjectBundle/Resources/config/routing/subject.xml" />
+    <import resource="@SynopsisSubjectBundle/Resources/config/routing/subject.xml" prefix="subjects" />
+
+    <!-- Subject Action Routes -->
+    <import resource="@SynopsisSubjectBundle/Resources/config/routing/action.xml" prefix="actions" />
 </routes>

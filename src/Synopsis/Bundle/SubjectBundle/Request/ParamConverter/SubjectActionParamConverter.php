@@ -37,7 +37,7 @@ class SubjectActionParamConverter implements ParamConverterInterface
      */
     public function apply ( Request $request, ParamConverter $configuration )
     {
-        $uuid   = $request->attributes->get('action');
+        $uuid   = $request->attributes->get('uuid');
         $action = $this->subjectActionManager->getByUuid($uuid);
         $param  = $configuration->getName();
 

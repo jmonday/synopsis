@@ -2,6 +2,8 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 use Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface,
     Synopsis\Bundle\SubjectBundle\Model\SubjectTypeInterface;
 
@@ -22,6 +24,11 @@ class SubjectType implements SubjectTypeInterface
      * @var SubjectActionInterface[]|\Doctrine\Common\Collections\Collection
      */
     private $actions;
+
+    /**
+     * @var UserInterface
+     */
+    private $user;
 
     /**
      * @var string
@@ -118,6 +125,24 @@ class SubjectType implements SubjectTypeInterface
     public function getDescription ()
     {
         return $this->description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser ( UserInterface $user )
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser ()
+    {
+        return $this->user;
     }
 
     /**

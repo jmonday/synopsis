@@ -1,14 +1,12 @@
-synopsis_subject:
-    resource: "@SynopsisSubjectBundle/Resources/config/routing.xml"
-    prefix:   /
+_homepage:
+    path:      /
+    defaults:  { _controller: SynopsisEventBundle:Event:index }
 
 SynopsisEventBundle:
     resource: "@SynopsisEventBundle/Resources/config/routing.xml"
-    prefix:   /events
 
 SynopsisSubjectBundle:
     resource: "@SynopsisSubjectBundle/Resources/config/routing.xml"
-    prefix:   /subjects
 
 # FOS User Bundle
 fos_user_security:

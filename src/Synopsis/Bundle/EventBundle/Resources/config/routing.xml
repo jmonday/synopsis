@@ -4,5 +4,5 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <!-- Event Routes -->
-    <import resource="@SynopsisEventBundle/Resources/config/routing/event.xml" />
+    <import resource="@SynopsisEventBundle/Resources/config/routing/event.xml" prefix="events" />
 </routes>

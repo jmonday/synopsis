@@ -2,14 +2,15 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Model;
 
-use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface;
+use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
+    Synopsis\Bundle\CoreBundle\Model\OwnableInterface;
 
 /**
  * Interface SubjectActionInterface
  *
  * @package Synopsis\Bundle\SubjectBundle\Model
  */
-interface SubjectActionInterface
+interface SubjectActionInterface extends OwnableInterface
 {
 
     /**

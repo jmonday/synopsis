@@ -26,6 +26,7 @@ class AppKernel extends Kernel
 
             // Third-party Bundles
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             // Synopsis Bundles
             new Synopsis\Bundle\CoreBundle\SynopsisCoreBundle(),
