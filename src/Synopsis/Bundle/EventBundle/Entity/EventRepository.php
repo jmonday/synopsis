@@ -2,13 +2,13 @@
 
 namespace Synopsis\Bundle\EventBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
+use Synopsis\Bundle\CoreBundle\Entity\CoreRepository;
 
 /**
  * Class EventRepository
  *
  * @package Synopsis\Bundle\EventBundle\Entity
  */
-class EventRepository extends EntityRepository
+class EventRepository extends CoreRepository
 {
 }

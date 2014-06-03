@@ -2,16 +2,16 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
-
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use Synopsis\Bundle\CoreBundle\Entity\CoreRepository;
 
 /**
  * Class SubjectActionRepository
  *
  * @package Synopsis\Bundle\SubjectBundle\Entity
  */
-class SubjectActionRepository extends EntityRepository
+class SubjectActionRepository extends CoreRepository
 {
 
     /**

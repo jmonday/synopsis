@@ -24,7 +24,7 @@ class EventController extends Controller
     public function indexAction ()
     {
         return $this->render('SynopsisEventBundle:Event:index.html.twig', [
-            'events' => $this->get('synopsis.manager.event')->getCollectionOrdered(['createdAt' => 'DESC']),
+            'events' => $this->get('synopsis.repository.event')->getCollectionOrdered(['createdAt' => 'DESC']),
         ]);
     }
 

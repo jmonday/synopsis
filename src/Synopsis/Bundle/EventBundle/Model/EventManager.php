@@ -2,19 +2,69 @@
 
 namespace Synopsis\Bundle\EventBundle\Model;
 
-use Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\Form\Form;
+use Doctrine\Common\Persistence\ObjectManager;
+
+use Symfony\Component\Form\Form,
+    Symfony\Component\Form\FormFactoryInterface,
+    Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\Security\Core\SecurityContext;
 
 use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException,
-    Synopsis\Bundle\CoreBundle\Model\AbstractManager;
+    Synopsis\Bundle\EventBundle\Entity\Event,
+    Synopsis\Bundle\SubjectBundle\Entity\SubjectActionRepository,
+    Synopsis\Bundle\SubjectBundle\Entity\SubjectRepository;
 
 /**
  * Class EventManager
  *
  * @package Synopsis\Bundle\EventBundle\Manager
  */
-class EventManager extends AbstractManager
+class EventManager
 {
+
+    /**
+     * @var SubjectActionRepository
+     */
+    private $actionRepository;
+
+    /**
+     * @var SecurityContext
+     */
+    private $context;
+
+    /**
+     * @var ObjectManager
+     */
+    private $entityManager;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var SubjectRepository
+     */
+    private $subjectRepository;
+
+
+    /**
+     * Event manager constructor.
+     *
+     * @param ObjectManager $om
+     * @param FormFactoryInterface $formFactory
+     * @param SecurityContext $context
+     * @param SubjectRepository $subjectRepository
+     * @param SubjectActionRepository $actionRepository
+     */
+    public function __construct ( ObjectManager $om, FormFactoryInterface $formFactory, SecurityContext $context, SubjectRepository $subjectRepository, SubjectActionRepository $actionRepository )
+    {
+        $this->entityManager = $om;
+        $this->formFactory = $formFactory;
+        $this->context = $context;
+        $this->subjectRepository = $subjectRepository;
+        $this->actionRepository  = $actionRepository;
+    }
 
     /**
      * Create a new event.
@@ -24,11 +74,10 @@ class EventManager extends AbstractManager
      */
     public function post ( Request $request )
     {
-        /* @var $event \Synopsis\Bundle\EventBundle\Model\EventInterface */
-        $action  = $this->container->get('synopsis.repository.subject.action')->getByUuid($request->get('action'));
-        $subject = $this->container->get('synopsis.repository.subject')->getByUuid($request->get('subject'));
-        $user    = $this->container->get('security.context')->getToken()->getUser();
-        $event   = new $this->entityClass($user, $subject, $action);
+        $action  = $this->actionRepository->getByUuid($request->get('action'));
+        $subject = $this->subjectRepository->getByUuid($request->get('subject'));
+        $user    = $this->context->getToken()->getUser();
+        $event   = new Event($user, $subject, $action);
 
         // Create and process the event form
         $form  = $this->createForm($event, 'POST');
@@ -51,8 +100,8 @@ class EventManager extends AbstractManager
         $form->handleRequest($request);
 
         if ( $form->isValid() ) {
-            $this->om->persist($event);
-            $this->om->flush($event);
+            $this->entityManager->persist($event);
+            $this->entityManager->flush($event);
 
             return $event;
         }

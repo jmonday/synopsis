@@ -24,8 +24,11 @@
 
         <!-- Event Manger Service -->
         <service id="synopsis.manager.event" class="%synopsis.manager.event.class%">
-            <argument type="service" id="service_container" />
-            <argument>%synopsis.entity.event.class%</argument>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="security.context" />
+            <argument type="service" id="synopsis.repository.subject" />
+            <argument type="service" id="synopsis.repository.subject.action" />
         </service>
 
         <!-- Event Event Subscriber -->

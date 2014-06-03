@@ -24,7 +24,7 @@ class SubjectController extends Controller
     public function indexAction ()
     {
         return $this->render('SynopsisSubjectBundle:Subject:index.html.twig', [
-            'subjects' => $this->get('synopsis.manager.subject')->getCollectionOrdered(['createdAt' => 'DESC']),
+            'subjects' => $this->get('synopsis.repository.subject')->getCollectionOrdered(['createdAt' => 'DESC']),
         ]);
     }
 

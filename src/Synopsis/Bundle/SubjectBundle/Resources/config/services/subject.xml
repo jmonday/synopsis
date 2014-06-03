@@ -19,14 +19,15 @@
 
         <!-- Subject Manger Service -->
         <service id="synopsis.manager.subject" class="%synopsis.manager.subject.class%">
-            <argument type="service" id="service_container" />
-            <argument>%synopsis.entity.subject.class%</argument>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="security.context" />
         </service>
 
         <!-- Subject ParamConverter -->
         <service id="synopsis.converter.subject" class="%synopsis.converter.subject.class%">
             <tag name="request.param_converter" converter="subject" priority="10" />
-            <argument type="service" id="synopsis.manager.subject" />
+            <argument type="service" id="synopsis.repository.subject" />
         </service>
 
         <!-- Subject Repository -->

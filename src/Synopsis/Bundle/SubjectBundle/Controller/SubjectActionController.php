@@ -22,7 +22,7 @@ class SubjectActionController extends Controller
     public function indexAction ()
     {
         return $this->render('SynopsisSubjectBundle:SubjectAction:index.html.twig', [
-            'actions' => $this->get('synopsis.manager.subject.action')->getCollectionOrdered(['createdAt' => 'DESC']),
+            'actions' => $this->get('synopsis.repository.subject.action')->getCollectionOrdered(['createdAt' => 'DESC']),
         ]);
     }
 

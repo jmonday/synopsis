@@ -6,21 +6,14 @@
     <parameters>
         <parameter key="synopsis.converter.subject.action.class">Synopsis\Bundle\SubjectBundle\Request\ParamConverter\SubjectActionParamConverter</parameter>
         <parameter key="synopsis.entity.subject.action.class">Synopsis\Bundle\SubjectBundle\Entity\SubjectAction</parameter>
-        <parameter key="synopsis.manager.subject.action.class">Synopsis\Bundle\SubjectBundle\Model\SubjectActionManager</parameter>
         <parameter key="synopsis.repository.subject.action.class">Synopsis\Bundle\SubjectBundle\Entity\SubjectActionRepository</parameter>
     </parameters>
 
     <services>
-        <!-- Subject Action Manger Service -->
-        <service id="synopsis.manager.subject.action" class="%synopsis.manager.subject.action.class%">
-            <argument type="service" id="service_container" />
-            <argument>%synopsis.entity.subject.action.class%</argument>
-        </service>
-
         <!-- Subject Action ParamConverter -->
         <service id="synopsis.converter.subject.action" class="%synopsis.converter.subject.action.class%">
             <tag name="request.param_converter" converter="subjectAction" priority="10" />
-            <argument type="service" id="synopsis.manager.subject.action" />
+            <argument type="service" id="synopsis.repository.subject.action" />
         </service>
 
         <!-- Subject Action Repository -->

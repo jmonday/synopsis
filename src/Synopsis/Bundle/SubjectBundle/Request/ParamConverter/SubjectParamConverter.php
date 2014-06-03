@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter,
 
 use Symfony\Component\HttpFoundation\Request;
 
-use Synopsis\Bundle\SubjectBundle\Model\SubjectManager;
+use Synopsis\Bundle\SubjectBundle\Entity\SubjectRepository;
 
 /**
  * Class SubjectParamConverter
@@ -18,18 +18,18 @@ class SubjectParamConverter implements ParamConverterInterface
 {
 
     /**
-     * @var SubjectManager
+     * @var SubjectRepository
      */
-    protected $subjectManager;
+    protected $subjectRepository;
 
     /**
      * Simple constructor.
      *
-     * @param SubjectManager $subjectManager
+     * @param SubjectRepository $subjectRepository
      */
-    public function __construct ( SubjectManager $subjectManager )
+    public function __construct ( SubjectRepository $subjectRepository )
     {
-        $this->subjectManager = $subjectManager;
+        $this->subjectRepository = $subjectRepository;
     }
 
     /**
@@ -38,7 +38,7 @@ class SubjectParamConverter implements ParamConverterInterface
     public function apply ( Request $request, ParamConverter $configuration )
     {
         $uuid    = $request->attributes->get('uuid');
-        $subject = $this->subjectManager->getByUuid($uuid);
+        $subject = $this->subjectRepository->getByUuid($uuid);
         $param   = $configuration->getName();
 
         $request->attributes->set($param, $subject);

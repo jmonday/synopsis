@@ -2,41 +2,51 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Model;
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Symfony\Component\Form\Form,
+    Symfony\Component\Form\FormFactoryInterface,
     Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+    Symfony\Component\Security\Core\SecurityContext;
 
 use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException,
-    Synopsis\Bundle\CoreBundle\Model\AbstractManager;
+    Synopsis\Bundle\SubjectBundle\Entity\Subject;
 
 /**
  * Class SubjectManager
  *
  * @package Synopsis\Bundle\SubjectBundle\Manager
  */
-class SubjectManager extends AbstractManager
+class SubjectManager
 {
 
     /**
-     * Find a single subject via UUID.
-     *
-     * @todo: This belongs in the subject repository!
-     *
-     * @param string $uuid The subject's UUID.
-     * @throws NotFoundHttpException
-     * @return SubjectInterface
+     * @var SecurityContext
      */
-    public function getByUuid ( $uuid )
+    private $context;
+
+    /**
+     * @var ObjectManager
+     */
+    private $entityManager;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * Event manager constructor.
+     *
+     * @param ObjectManager $om
+     * @param FormFactoryInterface $formFactory
+     * @param SecurityContext $context
+     */
+    public function __construct ( ObjectManager $om, FormFactoryInterface $formFactory, SecurityContext $context )
     {
-        $subject = $this->repository->findOneBy([
-            'uuid' => $uuid,
-        ]);
-
-        if ( ! $subject ) {
-            throw new NotFoundHttpException('The specified subject does not exist.');
-        }
-
-        return $subject;
+        $this->entityManager = $om;
+        $this->formFactory = $formFactory;
+        $this->context = $context;
     }
 
     /**
@@ -47,9 +57,8 @@ class SubjectManager extends AbstractManager
      */
     public function post ( Request $request )
     {
-        /* @var $subject \Synopsis\Bundle\SubjectBundle\Model\SubjectInterface */
-        $subject = new $this->entityClass();
-        $user    = $this->container->get('security.context')->getToken()->getUser();
+        $subject = new Subject();
+        $user    = $this->context->getToken()->getUser();
         $subject->setUser($user);
 
         // Create and process the subject form
@@ -73,8 +82,8 @@ class SubjectManager extends AbstractManager
         $form->handleRequest($request);
 
         if ( $form->isValid() ) {
-            $this->om->persist($subject);
-            $this->om->flush($subject);
+            $this->entityManager->persist($subject);
+            $this->entityManager->flush($subject);
 
             return $subject;
         }
