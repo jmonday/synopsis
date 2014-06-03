@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>UUID</th>
                 <th>Name</th>
                 <th>Description</th>
             </tr>
@@ -18,12 +17,7 @@
                 <tr>
                     <td>{{ action.id }}</td>
                     <td>
-                        <a href="{{ path('subject_action_show', { 'uuid' : action.uuid }) }}">
-                            {{ action.uuid }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ path('subject_action_show', { 'uuid' : action.uuid }) }}">
+                        <a href="{{ path('subject_action_show', { 'id' : action.id }) }}">
                             {{ action.name }}
                         </a>
                     </td>

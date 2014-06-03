@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Rhumsaa\Uuid\Uuid;
-
 use Symfony\Component\Security\Core\User\UserInterface;
 
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
@@ -43,11 +41,6 @@ class SubjectAction implements SubjectActionInterface
     private $description;
 
     /**
-     * @var string
-     */
-    private $uuid;
-
-    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -62,7 +55,7 @@ class SubjectAction implements SubjectActionInterface
      */
     public function __toString ()
     {
-        return sprintf('%s@%s', __CLASS__, $this->getUuid());
+        return sprintf('%s@%s', __CLASS__, $this->getId());
     }
 
     /**
@@ -129,24 +122,6 @@ class SubjectAction implements SubjectActionInterface
     public function getUser ()
     {
         return $this->user;
-    }
-
-    /**
-     * {@inheritdoc}
-     * @todo: This should not be based on the ID. Subject UUIDs are based from owner ID and creation timestamp.
-     */
-    public function setUuid ()
-    {
-        $this->uuid = Uuid::uuid5(Uuid::NIL, $this->getId());
-    }
-
-    /**
-     * {@inheritdoc}
-     * @todo: This should not be based on the ID. Subject UUIDs are based from owner ID and creation timestamp.
-     */
-    public function getUuid ()
-    {
-        return ( empty($this->uuid) ) ? $this->uuid = Uuid::uuid5(Uuid::NIL, $this->getId()) : $this->uuid;
     }
 
     /**

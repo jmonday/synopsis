@@ -38,7 +38,7 @@ class SubjectController extends Controller
     {
         try {
             $subject = $this->get('synopsis.manager.subject')->post($request);
-            return $this->redirect($this->generateUrl('subject_show', ['uuid' => $subject->getUuid()]));
+            return $this->redirect($this->generateUrl('subject_show', ['id' => $subject->getId()]));
         } catch ( InvalidFormException $exception ) {
             return $this->render('SynopsisSubjectBundle:Subject:new.html.twig', [
                 'form' => $exception->getForm()->createView(),

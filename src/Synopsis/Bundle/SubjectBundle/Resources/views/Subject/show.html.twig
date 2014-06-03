@@ -38,11 +38,11 @@
             {% for action in subject.type.actions %}
                 <li>
                     #{{ action.id }} -
-                    <a href="{{ path('event_new', { 'subject' : subject.uuid, 'action' : action.uuid }) }}">
+                    <a href="{{ path('event_new', { 'subject' : subject.id, 'action' : action.id }) }}">
                         {{ action.name }}
                     </a>
-                    - {{ action.uuid }}<br />
-                    <img src="{{ qr_code(url('event_new', { 'subject' : subject.uuid, 'action' : action.uuid })) }}" border="1" alt="" />
+                    - {{ action.id }}<br />
+                    <img src="{{ qr_code(url('event_new', { 'subject' : subject.id, 'action' : action.id })) }}" border="1" alt="" />
                 </li>
             {% endfor %}
         </ul>

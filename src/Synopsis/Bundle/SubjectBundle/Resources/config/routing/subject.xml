@@ -14,7 +14,7 @@
     </route>
 
     <!-- Show Subject -->
-    <route id="subject_show" pattern="/{uuid}" methods="GET">
+    <route id="subject_show" pattern="/{id}" methods="GET">
         <default key="_controller">SynopsisSubjectBundle:Subject:show</default>
     </route>
 </routes>

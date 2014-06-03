@@ -9,7 +9,7 @@
     </route>
 
     <!-- Show Subject Action -->
-    <route id="subject_action_show" pattern="/{uuid}" methods="GET">
+    <route id="subject_action_show" pattern="/{id}" methods="GET">
         <default key="_controller">SynopsisSubjectBundle:SubjectAction:show</default>
     </route>
 </routes>

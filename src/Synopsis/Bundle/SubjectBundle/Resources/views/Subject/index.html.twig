@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>UUID</th>
                 <th>Type</th>
                 <th>Subject</th>
             </tr>
@@ -17,14 +16,9 @@
             {% for subject in subjects %}
                 <tr>
                     <td>{{ subject.id }}</td>
-                    <td>
-                        <a href="{{ path('subject_show', { 'uuid' : subject.uuid }) }}">
-                            {{ subject.uuid }}
-                        </a>
-                    </td>
                     <td>{{ subject.type.namespace }}</td>
                     <td>
-                        <a href="{{ path('subject_show', { 'uuid' : subject.uuid }) }}">
+                        <a href="{{ path('subject_show', { 'id' : subject.id }) }}">
                             {{ subject.name }}
                         </a>
                     </td>

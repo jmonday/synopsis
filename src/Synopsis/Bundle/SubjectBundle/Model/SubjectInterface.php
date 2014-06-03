@@ -80,20 +80,6 @@ interface SubjectInterface extends OwnableInterface
     public function getType ();
 
     /**
-     * Set the subject's UUID.
-     *
-     * @return SubjectInterface
-     */
-    public function setUuid ();
-
-    /**
-     * Get the subject's UUID.
-     *
-     * @return string
-     */
-    public function getUuid ();
-
-    /**
      * Set the subject's creation time.
      *
      * @param \DateTime $createdAt

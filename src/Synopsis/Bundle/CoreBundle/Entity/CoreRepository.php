@@ -4,6 +4,7 @@ namespace Synopsis\Bundle\CoreBundle\Entity;
 
 use Doctrine\Common\Collections\Criteria,
     Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class CoreRepository

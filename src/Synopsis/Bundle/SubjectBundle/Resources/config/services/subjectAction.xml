@@ -11,10 +11,12 @@
 
     <services>
         <!-- Subject Action ParamConverter -->
+        <!--
         <service id="synopsis.converter.subject.action" class="%synopsis.converter.subject.action.class%">
             <tag name="request.param_converter" converter="subjectAction" priority="10" />
             <argument type="service" id="synopsis.repository.subject.action" />
         </service>
+        -->
 
         <!-- Subject Action Repository -->
         <service id="synopsis.repository.subject.action" class="%synopsis.repository.subject.action.class%" factory-service="doctrine" factory-method="getRepository">

@@ -11,8 +11,8 @@
     <!-- New Event -->
     <route id="event_new" pattern="/{subject}/{action}" methods="GET|POST">
         <default key="_controller">SynopsisEventBundle:Event:new</default>
-        <requirement key="subject">[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}</requirement>
-        <requirement key="action">[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}</requirement>
+        <requirement key="subject">\d+</requirement>
+        <requirement key="action">\d+</requirement>
     </route>
 
     <!-- Show Event -->

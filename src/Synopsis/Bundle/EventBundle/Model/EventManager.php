@@ -23,11 +23,6 @@ class EventManager
 {
 
     /**
-     * @var SubjectActionRepository
-     */
-    private $actionRepository;
-
-    /**
      * @var SecurityContext
      */
     private $context;
@@ -42,11 +37,6 @@ class EventManager
      */
     private $formFactory;
 
-    /**
-     * @var SubjectRepository
-     */
-    private $subjectRepository;
-
 
     /**
      * Event manager constructor.
@@ -54,16 +44,12 @@ class EventManager
      * @param ObjectManager $om
      * @param FormFactoryInterface $formFactory
      * @param SecurityContext $context
-     * @param SubjectRepository $subjectRepository
-     * @param SubjectActionRepository $actionRepository
      */
-    public function __construct ( ObjectManager $om, FormFactoryInterface $formFactory, SecurityContext $context, SubjectRepository $subjectRepository, SubjectActionRepository $actionRepository )
+    public function __construct ( ObjectManager $om, FormFactoryInterface $formFactory, SecurityContext $context )
     {
         $this->entityManager = $om;
         $this->formFactory = $formFactory;
         $this->context = $context;
-        $this->subjectRepository = $subjectRepository;
-        $this->actionRepository  = $actionRepository;
     }
 
     /**
@@ -74,8 +60,8 @@ class EventManager
      */
     public function post ( Request $request )
     {
-        $action  = $this->actionRepository->getByUuid($request->get('action'));
-        $subject = $this->subjectRepository->getByUuid($request->get('subject'));
+        $action  = $this->entityManager->getRepository('SynopsisSubjectBundle:SubjectAction')->find($request->get('action'));
+        $subject = $this->entityManager->getRepository('SynopsisSubjectBundle:Subject')->find($request->get('subject'));
         $user    = $this->context->getToken()->getUser();
         $event   = new Event($user, $subject, $action);
 

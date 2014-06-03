@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Entity;
 
-use Rhumsaa\Uuid\Uuid;
-
 use Symfony\Component\Security\Core\User\UserInterface;
 
 use Synopsis\Bundle\EventBundle\Model\EventInterface,
@@ -49,11 +47,6 @@ class Subject implements SubjectInterface
     private $user;
 
     /**
-     * @var string
-     */
-    private $uuid;
-
-    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -68,7 +61,7 @@ class Subject implements SubjectInterface
      */
     public function __toString ()
     {
-        return sprintf('%s@%s', __CLASS__, $this->getUuid());
+        return sprintf('%s@%s', __CLASS__, $this->getId());
     }
 
     /**
@@ -158,27 +151,6 @@ class Subject implements SubjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setUuid ()
-    {
-        $key = sprintf('%d:%s',
-            $this->getUser()->getId(),
-            $this->getCreatedAt()->format('Y-m-d H:i:s')
-        );
-
-        $this->uuid = Uuid::uuid5(Uuid::NIL, $key);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUuid ()
-    {
-        return $this->uuid;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setCreatedAt ( \DateTime $createdAt )
     {
         $this->createdAt = $createdAt;
@@ -218,7 +190,6 @@ class Subject implements SubjectInterface
     public function prePersist ()
     {
         $this->createdAt = $this->updatedAt = new \DateTime();
-        $this->setUuid();
     }
 
     /**
