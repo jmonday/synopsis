@@ -11,9 +11,7 @@ use Symfony\Component\Form\Form,
 
 use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException,
     Synopsis\Bundle\EventBundle\Entity\Event,
-    Synopsis\Bundle\SubjectBundle\Entity\SubjectActionRepository,
-    Synopsis\Bundle\SubjectBundle\Entity\SubjectRepository;
-use Synopsis\Bundle\SubjectBundle\Exception\InvalidSubjectActionException;
+    Synopsis\Bundle\SubjectBundle\Exception\InvalidSubjectActionException;
 
 /**
  * Class EventManager
