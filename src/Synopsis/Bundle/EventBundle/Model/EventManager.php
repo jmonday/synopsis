@@ -13,6 +13,7 @@ use Synopsis\Bundle\CoreBundle\Exception\InvalidFormException,
     Synopsis\Bundle\EventBundle\Entity\Event,
     Synopsis\Bundle\SubjectBundle\Entity\SubjectActionRepository,
     Synopsis\Bundle\SubjectBundle\Entity\SubjectRepository;
+use Synopsis\Bundle\SubjectBundle\Exception\InvalidSubjectActionException;
 
 /**
  * Class EventManager
@@ -56,14 +57,21 @@ class EventManager
      * Create a new event.
      *
      * @param Request $request The request.
+     * @throws \Synopsis\Bundle\SubjectBundle\Exception\InvalidSubjectActionException
      * @return EventInterface
      */
     public function post ( Request $request )
     {
-        $action  = $this->entityManager->getRepository('SynopsisSubjectBundle:SubjectAction')->find($request->get('action'));
-        $subject = $this->entityManager->getRepository('SynopsisSubjectBundle:Subject')->find($request->get('subject'));
-        $user    = $this->context->getToken()->getUser();
-        $event   = new Event($user, $subject, $action);
+        $action  = $this->entityManager->getRepository('SynopsisSubjectBundle:SubjectAction')->get($request->get('action'));
+        $subject = $this->entityManager->getRepository('SynopsisSubjectBundle:Subject')->get($request->get('subject'));
+
+        // Halt if we cannot take this action on this subject
+        if ( false == $subject->getType()->getActions()->contains($action) ) {
+            throw new InvalidSubjectActionException('An invalid action has been taken on this subject!');
+        }
+
+        $user  = $this->context->getToken()->getUser();
+        $event = new Event($user, $subject, $action);
 
         // Create and process the event form
         $form  = $this->createForm($event, 'POST');

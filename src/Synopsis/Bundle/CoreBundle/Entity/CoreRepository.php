@@ -4,6 +4,7 @@ namespace Synopsis\Bundle\CoreBundle\Entity;
 
 use Doctrine\Common\Collections\Criteria,
     Doctrine\ORM\EntityRepository;
+
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -13,6 +14,30 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class CoreRepository extends EntityRepository
 {
+
+    /**
+     * Find a single entity via ID.
+     *
+     * @param mixed $id The entity's ID.
+     * @throws NotFoundHttpException
+     * @return mixed
+     */
+    public function get ( $id )
+    {
+        $entity = $this->createQueryBuilder('entity')
+            ->where('entity.id = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+
+        if ( is_null($entity) ) {
+            throw new NotFoundHttpException('The specified entity does not exist.');
+        }
+
+        return $entity;
+    }
 
     /**
      * Get a collection of entities matching an optional array of criteria.
