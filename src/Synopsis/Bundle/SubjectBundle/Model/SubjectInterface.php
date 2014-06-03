@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\SubjectBundle\Model;
 
-use Doctrine\Common\Collections\Collection;
-
 use Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
     Synopsis\Bundle\EventBundle\Model\EventInterface;
 
@@ -32,7 +30,7 @@ interface SubjectInterface extends OwnableInterface
     /**
      * Get a collection of the subject's related events.
      *
-     * @return EventInterface[]|Collection
+     * @return EventInterface[]|\Doctrine\Common\Collections\Collection
      */
     public function getEvents ();
 

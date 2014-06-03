@@ -2,8 +2,6 @@
 
 namespace Synopsis\Bundle\EventBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
     Synopsis\Bundle\AttributeBundle\Model\ValueInterface,
     Synopsis\Bundle\CoreBundle\Model\OwnableInterface,
@@ -66,7 +64,7 @@ interface EventInterface extends OwnableInterface
     /**
      * Get the collection of related attribute values.
      *
-     * @return ValueInterface[]|ArrayCollection
+     * @return ValueInterface[]|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getAttributeValues ();
 

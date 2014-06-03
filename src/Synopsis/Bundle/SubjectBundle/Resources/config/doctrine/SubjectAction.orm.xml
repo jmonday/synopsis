@@ -3,7 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction" table="subject_actions">
+    <entity name="Synopsis\Bundle\SubjectBundle\Entity\SubjectAction"
+        repository-class="Synopsis\Bundle\SubjectBundle\Entity\SubjectActionRepository"
+        table="subject_actions">
+
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>

@@ -7,8 +7,7 @@ use Rhumsaa\Uuid\Uuid;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 use Synopsis\Bundle\AttributeBundle\Model\AttributeInterface,
-    Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface,
-    Synopsis\Bundle\SubjectBundle\Model\SubjectInterface;
+    Synopsis\Bundle\SubjectBundle\Model\SubjectActionInterface;
 
 /**
  * Class SubjectAction

@@ -4,8 +4,6 @@ namespace Synopsis\Bundle\SubjectBundle\Entity;
 
 use Rhumsaa\Uuid\Uuid;
 
-use Doctrine\Common\Collections\Collection;
-
 use Symfony\Component\Security\Core\User\UserInterface;
 
 use Synopsis\Bundle\EventBundle\Model\EventInterface,
@@ -26,7 +24,7 @@ class Subject implements SubjectInterface
     private $id;
 
     /**
-     * @var EventInterface[]|Collection
+     * @var EventInterface[]|\Doctrine\Common\Collections\Collection
      */
     private $events;
 

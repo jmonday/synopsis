@@ -25,7 +25,7 @@ class EventManager extends AbstractManager
     public function post ( Request $request )
     {
         /* @var $event \Synopsis\Bundle\EventBundle\Model\EventInterface */
-        $action  = $this->container->get('synopsis.manager.subject.action')->getByUuid($request->get('action'));
+        $action  = $this->container->get('synopsis.repository.subject.action')->getByUuid($request->get('action'));
         $subject = $this->container->get('synopsis.repository.subject')->getByUuid($request->get('subject'));
         $user    = $this->container->get('security.context')->getToken()->getUser();
         $event   = new $this->entityClass($user, $subject, $action);
